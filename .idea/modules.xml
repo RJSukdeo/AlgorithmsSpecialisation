@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/IntegerMultiplication.iml" filepath="$PROJECT_DIR$/IntegerMultiplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AlgorithmsSpecialisation.iml" filepath="$PROJECT_DIR$/AlgorithmsSpecialisation.iml" />
     </modules>
   </component>
 </project>

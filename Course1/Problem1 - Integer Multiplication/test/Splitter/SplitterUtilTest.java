@@ -1,4 +1,4 @@
-package main.Splitter;
+package Splitter;
 
 import org.junit.Assert;
 import org.junit.Test;

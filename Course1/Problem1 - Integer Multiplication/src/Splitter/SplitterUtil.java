@@ -1,4 +1,4 @@
-package main.Splitter;
+package Splitter;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

@@ -1,7 +1,6 @@
-package main.Multipliers;
+package Multipliers;
 
-import main.Splitter.SplitterUtil;
-
+import Splitter.*;
 import java.math.BigInteger;
 import java.util.List;
 

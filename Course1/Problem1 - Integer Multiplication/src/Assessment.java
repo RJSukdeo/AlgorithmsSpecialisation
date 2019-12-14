@@ -1,7 +1,4 @@
-package main;
-
-import main.Multipliers.KaratsubaMultiplier;
-
+import Multipliers.KaratsubaMultiplier;
 import java.math.BigInteger;
 
 public class Assessment {

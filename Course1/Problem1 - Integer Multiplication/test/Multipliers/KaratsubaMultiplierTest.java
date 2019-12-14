@@ -1,8 +1,7 @@
-package main.Multipliers;
+package Multipliers;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.math.BigInteger;
 
 public class KaratsubaMultiplierTest {
