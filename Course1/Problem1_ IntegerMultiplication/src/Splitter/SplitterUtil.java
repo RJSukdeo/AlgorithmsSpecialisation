@@ -10,7 +10,7 @@ public class SplitterUtil {
     private SplitterUtil() {
     }
 
-    public static final List<BigInteger> split(BigInteger input) {
+    public static List<BigInteger> split(BigInteger input) {
         List<BigInteger> terms = new ArrayList<>();
         split(input, terms);
         Collections.reverse(terms);
