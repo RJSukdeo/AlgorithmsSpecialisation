@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Course1/Problem1 - Integer Multiplication/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Course1/Problem1 - Integer Multiplication/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/Course1/Problem 2 - Sorting and Inversions/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Course1/Problem 2 - Sorting and Inversions/test" isTestSource="true" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
