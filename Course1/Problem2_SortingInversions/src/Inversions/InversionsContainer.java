@@ -1,20 +1,23 @@
 package Inversions;
 
- public final class InversionsContainer {
-    private int numInversions;
-    private int[] array;
+import java.util.List;
 
-    public InversionsContainer(int[] array, int numInversions) {
-        this.array = array;
+public final class InversionsContainer {
+
+    private final long numInversions;
+    private final List<Integer> elements;
+
+    public InversionsContainer(final List<Integer> elements, final long numInversions) {
+        this.elements = elements;
         this.numInversions = numInversions;
     }
 
-    public int getNumInversions() {
+    public long getNumInversions() {
         return numInversions;
     }
 
-    public int[] getArray() {
-        return array;
+    public List<Integer> getElements() {
+        return elements;
     }
 
 }
