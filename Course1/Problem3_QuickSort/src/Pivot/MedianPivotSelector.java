@@ -1,7 +1,5 @@
 package Pivot;
 
-import java.lang.reflect.Array;
-import java.util.Collections;
 import java.util.List;
 
 public class MedianPivotSelector implements IPivotSelector {
@@ -32,7 +30,7 @@ public class MedianPivotSelector implements IPivotSelector {
                     elements[i] = elements[j];
                     elements[j] = temp;
                     temp = indices[i];
-                    indices[i]  = indices[j];
+                    indices[i] = indices[j];
                     indices[j] = temp;
                 }
             }
