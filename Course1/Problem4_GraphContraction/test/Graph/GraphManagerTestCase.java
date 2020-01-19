@@ -12,7 +12,7 @@ public class GraphManagerTestCase {
     @Test
     public void testEmptyConstructor() {
         GraphManager graphManager = new GraphManager();
-        assertTrue(graphManager.getEdges().isEmpty());
+        assertTrue(graphManager.getUndirectedEdges().isEmpty());
         assertTrue(graphManager.getNodes().isEmpty());
     }
 
@@ -20,19 +20,19 @@ public class GraphManagerTestCase {
     public void testHashMapConstructor() {
         GraphManager graphManager = new GraphManager(getGraphInputs());
         Set<Node> nodes = graphManager.getNodes();
-        Collection<Edge> edges = graphManager.getEdges();
+        Collection<UndirectedEdge> undirectedEdges = graphManager.getUndirectedEdges();
 
         assertEquals(4, nodes.size());
-        assertEquals(5, edges.size());
+        assertEquals(5, undirectedEdges.size());
         assertTrue(nodes.contains(new Node(1)));
         assertTrue(nodes.contains(new Node(2)));
         assertTrue(nodes.contains(new Node(3)));
         assertTrue(nodes.contains(new Node(4)));
-        assertTrue(edges.contains(new Edge(new Node(1), new Node(2))));
-        assertTrue(edges.contains(new Edge(new Node(2), new Node(3))));
-        assertTrue(edges.contains(new Edge(new Node(3), new Node(4))));
-        assertTrue(edges.contains(new Edge(new Node(1), new Node(4))));
-        assertTrue(edges.contains(new Edge(new Node(1), new Node(3))));
+        assertTrue(undirectedEdges.contains(new UndirectedEdge(new Node(1), new Node(2))));
+        assertTrue(undirectedEdges.contains(new UndirectedEdge(new Node(2), new Node(3))));
+        assertTrue(undirectedEdges.contains(new UndirectedEdge(new Node(3), new Node(4))));
+        assertTrue(undirectedEdges.contains(new UndirectedEdge(new Node(1), new Node(4))));
+        assertTrue(undirectedEdges.contains(new UndirectedEdge(new Node(1), new Node(3))));
 
         Node node1 = nodes.stream().filter(node -> node.getId() == 1).findFirst().get();
         Node node2 = nodes.stream().filter(node -> node.getId() == 2).findFirst().get();

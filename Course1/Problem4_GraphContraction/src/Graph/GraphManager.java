@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public final class GraphManager {
 
     private Set<Node> nodes = new HashSet<>();
-    private List<Edge> edges = new ArrayList<>();
+    private List<UndirectedEdge> undirectedEdges = new ArrayList<>();
     private Random randomGenerator = new Random();
 
     public GraphManager() {
@@ -28,11 +28,11 @@ public final class GraphManager {
 
     public ContractionAlgorithmResults runContractionAlgorithm() {
         if (nodes.size() <= 2) {
-            return new ContractionAlgorithmResults(edges.size());
+            return new ContractionAlgorithmResults(undirectedEdges.size());
         }
-        Edge contractionEdge = edges.get(randomGenerator.nextInt(edges.size()));
-        Node[] encompassingNodes = contractionEdge.getEncompassingNodes().toArray(new Node[0]);
-        edges.removeAll(getEdges(encompassingNodes[0], encompassingNodes[1]));
+        UndirectedEdge contractionUndirectedEdge = undirectedEdges.get(randomGenerator.nextInt(undirectedEdges.size()));
+        Node[] encompassingNodes = contractionUndirectedEdge.getEncompassingNodes().toArray(new Node[0]);
+        undirectedEdges.removeAll(getEdges(encompassingNodes[0], encompassingNodes[1]));
         Node resultantNode = encompassingNodes[0].getId() < encompassingNodes[1].getId() ? encompassingNodes[0] : encompassingNodes[1];
         Node destroyedNode = encompassingNodes[0].getId() < encompassingNodes[1].getId() ? encompassingNodes[1] : encompassingNodes[0];
         redirectEdges(resultantNode, destroyedNode);
@@ -45,12 +45,12 @@ public final class GraphManager {
         return nodes.stream().filter(node -> node.getId() == nodeId).findFirst().get();
     }
 
-    private List<Edge> getEdges(final Node node1, final Node node2) {
-        return edges.stream().filter(edge -> edge.containsNode(node1) && edge.containsNode(node2)).collect(Collectors.toList());
+    private List<UndirectedEdge> getEdges(final Node node1, final Node node2) {
+        return undirectedEdges.stream().filter(undirectedEdge -> undirectedEdge.containsNode(node1) && undirectedEdge.containsNode(node2)).collect(Collectors.toList());
     }
 
-    private List<Edge> getEdges(final Node node) {
-        return edges.stream().filter(edge -> edge.containsNode(node)).collect(Collectors.toList());
+    private List<UndirectedEdge> getEdges(final Node node) {
+        return undirectedEdges.stream().filter(undirectedEdge -> undirectedEdge.containsNode(node)).collect(Collectors.toList());
     }
 
     private List<Node> getConnectedNodes(final Node node) {
@@ -68,23 +68,23 @@ public final class GraphManager {
     }
 
     private void redirectEdges(final Node remainingNode, final Node destroyedNode) {
-        List<Edge> edgesAroundDestroyedNode = getEdges(destroyedNode);
-        edgesAroundDestroyedNode.forEach(edge -> edge.replaceNode(destroyedNode, remainingNode));
+        List<UndirectedEdge> edgesAroundDestroyedNode = getEdges(destroyedNode);
+        edgesAroundDestroyedNode.forEach(undirectedEdge -> undirectedEdge.replaceNode(destroyedNode, remainingNode));
     }
 
     Set<Node> getNodes() {
         return nodes;
     }
 
-    Collection<Edge> getEdges() {
-        return edges;
+    Collection<UndirectedEdge> getUndirectedEdges() {
+        return undirectedEdges;
     }
 
     private void createUniqueEdges(final int nodeId, final List<Integer> connectingNodeIds) {
         for (Integer id : connectingNodeIds) {
-            Edge edge = new Edge(getNode(nodeId), getNode(id));
-            if (!edges.contains(edge)) {
-                edges.add(edge);
+            UndirectedEdge undirectedEdge = new UndirectedEdge(getNode(nodeId), getNode(id));
+            if (!undirectedEdges.contains(undirectedEdge)) {
+                undirectedEdges.add(undirectedEdge);
             }
         }
     }
