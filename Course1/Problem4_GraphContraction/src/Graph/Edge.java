@@ -22,6 +22,10 @@ abstract class Edge {
         return encompassingNodes.contains(node);
     }
 
+    boolean selfLoop() {
+        return getEncompassingNodes().get(0).equals(getEncompassingNodes().get(1));
+    }
+
     List<Node> getEncompassingNodes() {
         return encompassingNodes;
     }
