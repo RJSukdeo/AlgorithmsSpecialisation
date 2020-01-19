@@ -32,7 +32,7 @@ final class DirectedEdge extends Edge {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Directed Edge {Head: ").append(getHead().toString()).append(", Tail: ").append(getTail().toString());
+        sb.append("Directed Edge {Head: ").append(getHead().toString()).append(", Tail: ").append(getTail().toString()).append("}");
         sb.append("}");
         return sb.toString();
     }
