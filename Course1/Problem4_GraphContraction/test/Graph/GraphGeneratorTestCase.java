@@ -1,5 +1,6 @@
 package Graph;
 
+import Graph.UndirectedGraphInputs.InputBuilder;
 import org.junit.Test;
 
 import java.util.*;
@@ -11,7 +12,7 @@ public class GraphGeneratorTestCase {
 
     @Test
     public void testHashMapConstructor() {
-        GraphGenerator graphGenerator = GraphGenerator.getGeneratorUndirected(GraphInput.getGraphInputs());
+        GraphGenerator graphGenerator = GraphGenerator.getGeneratorUndirected(new InputBuilder().addEntries(GraphInput.getGraphInputs()).build());
         Set<Node> nodes = graphGenerator.getNodes(false);
         Collection<Edge> undirectedEdges = graphGenerator.getEdges(false);
 

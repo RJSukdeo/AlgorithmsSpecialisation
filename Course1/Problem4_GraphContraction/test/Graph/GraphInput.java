@@ -7,7 +7,10 @@ import java.util.Map;
 
 class GraphInput {
 
-    private GraphInput(){};
+    private GraphInput() {
+    }
+
+    ;
 
     //  getGraphInputs produces the input to be used by GraphManager, graph represented below.
 //
@@ -47,6 +50,5 @@ class GraphInput {
 
         return graphMap;
     }
-
 
 }

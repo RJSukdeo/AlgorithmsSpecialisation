@@ -1,5 +1,6 @@
 package Graph;
 
+import Graph.UndirectedGraphInputs.InputBuilder;
 import org.junit.Test;
 
 import java.util.Random;
@@ -10,7 +11,7 @@ public class ContractionAlgorithmTestCase {
 
     @Test
     public void testRunContractionAlgorithm() {
-        GraphGenerator graphGenerator = GraphGenerator.getGeneratorUndirected(GraphInput.getGraphInputs());
+        GraphGenerator graphGenerator = GraphGenerator.getGeneratorUndirected(new InputBuilder().addEntries(GraphInput.getGraphInputs()).build());
         ContractionAlgorithm contractionAlgorithm = new ContractionAlgorithm(graphGenerator, new Random(30));
         ContractionAlgorithmResults results = contractionAlgorithm.run();
         assertEquals(2, results.getCrossingEdges());

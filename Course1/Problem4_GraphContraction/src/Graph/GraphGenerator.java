@@ -7,18 +7,27 @@ public final class GraphGenerator {
     private final Set<Node> nodes = new HashSet<>();
     private final List<Edge> edges = new ArrayList<>();
 
-    private GraphGenerator(final Map<Integer, List<Integer>> nodeInfoMap) {
+    private GraphGenerator(final UndirectedGraphInputs graphInputs) {
+        Map<Integer, List<Integer>> nodeInfoMap = graphInputs.getOrganisedInputs();
         nodeInfoMap.keySet().forEach(nodeId -> nodes.add(new Node(nodeId)));
         for (int nodeId : nodeInfoMap.keySet()) {
             createUniqueUndirectedEdges(nodeId, nodeInfoMap.get(nodeId));
         }
     }
 
-    public static GraphGenerator getGeneratorUndirected(final Map<Integer, List<Integer>> nodeInfoMap) {
-        return new GraphGenerator(nodeInfoMap);
+    private GraphGenerator(final DirectedGraphInputs graphInputs) {
+
     }
 
-    Set<Node> getNodes(boolean receiveCopy) {
+    public static GraphGenerator getGeneratorUndirected(final UndirectedGraphInputs graphInputs) {
+        return new GraphGenerator(graphInputs);
+    }
+
+    public static GraphGenerator getGeneratorDirected(final DirectedGraphInputs graphInputs) {
+        return new GraphGenerator(graphInputs);
+    }
+
+    public Set<Node> getNodes(boolean receiveCopy) {
         if (receiveCopy) {
             Set<Node> copyOfNodes = new HashSet<>(nodes.size());
             nodes.forEach(node -> copyOfNodes.add((Node) node.clone()));
@@ -27,7 +36,7 @@ public final class GraphGenerator {
         return nodes;
     }
 
-    List<Edge> getEdges(boolean receiveCopy) {
+    public List<Edge> getEdges(boolean receiveCopy) {
         if (receiveCopy) {
             List<Edge> copyOfEdges = new ArrayList<>(edges.size());
             for (Edge edge : edges) {
