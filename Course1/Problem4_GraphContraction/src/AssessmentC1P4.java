@@ -12,8 +12,8 @@ public class AssessmentC1P4 {
         Map<Integer, List<Integer>> graphInfo = getGraphInfo();
         int numberOfNodes = graphInfo.keySet().size();
         int smallestCrossingEdges = numberOfNodes;
-        for (int i = 0; i < numberOfNodes; i++) {
-            GraphGenerator graphGenerator = GraphGenerator.getGeneratorUndirected(graphInfo);
+        GraphGenerator graphGenerator = GraphGenerator.getGeneratorUndirected(graphInfo);
+        for (int i = 0; i < Math.pow(numberOfNodes, 2); i++) {
             ContractionAlgorithm contractionAlgorithm = new ContractionAlgorithm(graphGenerator);
             ContractionAlgorithmResults results = contractionAlgorithm.run();
             if (results.getCrossingEdges() < smallestCrossingEdges) {
