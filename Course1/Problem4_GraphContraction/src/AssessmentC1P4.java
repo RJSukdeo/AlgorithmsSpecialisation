@@ -1,5 +1,6 @@
+import Graph.ContractionAlgorithm;
 import Graph.ContractionAlgorithmResults;
-import Graph.GraphManager;
+import Graph.GraphGenerator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,9 +12,10 @@ public class AssessmentC1P4 {
         Map<Integer, List<Integer>> graphInfo = getGraphInfo();
         int numberOfNodes = graphInfo.keySet().size();
         int smallestCrossingEdges = numberOfNodes;
-        for (int i = 0; i < Math.pow(numberOfNodes, 2); i++) {
-            GraphManager graphManager = new GraphManager(graphInfo);
-            ContractionAlgorithmResults results = graphManager.runContractionAlgorithm();
+        for (int i = 0; i < numberOfNodes; i++) {
+            GraphGenerator graphGenerator = GraphGenerator.getGeneratorUndirected(graphInfo);
+            ContractionAlgorithm contractionAlgorithm = new ContractionAlgorithm(graphGenerator);
+            ContractionAlgorithmResults results = contractionAlgorithm.run();
             if (results.getCrossingEdges() < smallestCrossingEdges) {
                 smallestCrossingEdges = results.getCrossingEdges();
             }

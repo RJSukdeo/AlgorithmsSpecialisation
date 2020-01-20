@@ -13,69 +13,89 @@ public class NodeTestCase {
     }
 
     @Test
-    public void testAddConnectedNode() {
+    public void testAddConnectedEdge() {
         Node node1 = new Node(1);
         Node node2 = new Node(2);
         Node node3 = new Node(3);
 
-        node1.addConnectedNode(node2);
-        node1.addConnectedNode(node3);
-        node2.addConnectedNode(node1);
-        node2.addConnectedNode(node3);
-        node3.addConnectedNode(node1);
-        node3.addConnectedNode(node2);
-        assertTrue(node1.containsConnectedNode(node2));
-        assertTrue(node1.containsConnectedNode(node3));
-        assertTrue(node2.containsConnectedNode(node1));
-        assertTrue(node2.containsConnectedNode(node3));
-        assertTrue(node3.containsConnectedNode(node1));
-        assertTrue(node3.containsConnectedNode(node2));
+        Edge edge12 = new UndirectedEdge(node1, node2);
+        Edge edge13 = new UndirectedEdge(node1, node3);
+        Edge edge23 = new UndirectedEdge(node2, node3);
+        node1.addConnectedEdge(edge12);
+        node1.addConnectedEdge(edge13);
+        node2.addConnectedEdge(edge23);
+        node2.addConnectedEdge(edge12);
+        node3.addConnectedEdge(edge13);
+        node3.addConnectedEdge(edge23);
+
+        assertTrue(node1.containsConnectedEdge(edge12));
+        assertTrue(node1.containsConnectedEdge(edge13));
+        assertTrue(node2.containsConnectedEdge(edge23));
+        assertTrue(node2.containsConnectedEdge(edge12));
+        assertTrue(node3.containsConnectedEdge(edge23));
+        assertTrue(node3.containsConnectedEdge(edge13));
+
     }
 
     @Test
-    public void testRemoveConnectedNode() {
+    public void testRemoveConnectedEdge() {
         Node node1 = new Node(1);
         Node node2 = new Node(2);
         Node node3 = new Node(3);
 
-        node1.addConnectedNode(node2);
-        node1.addConnectedNode(node3);
-        node2.addConnectedNode(node1);
-        node2.addConnectedNode(node3);
-        node3.addConnectedNode(node1);
-        node3.addConnectedNode(node2);
-        assertTrue(node1.containsConnectedNode(node2));
-        assertTrue(node1.containsConnectedNode(node3));
-        assertTrue(node2.containsConnectedNode(node1));
-        assertTrue(node2.containsConnectedNode(node3));
-        assertTrue(node3.containsConnectedNode(node1));
-        assertTrue(node3.containsConnectedNode(node2));
+        Edge edge12 = new UndirectedEdge(node1, node2);
+        Edge edge13 = new UndirectedEdge(node1, node3);
+        Edge edge23 = new UndirectedEdge(node2, node3);
+        node1.addConnectedEdge(edge12);
+        node1.addConnectedEdge(edge13);
+        node2.addConnectedEdge(edge23);
+        node2.addConnectedEdge(edge12);
+        node3.addConnectedEdge(edge13);
+        node3.addConnectedEdge(edge23);
 
-        node1.removeConnectedNode(node3);
-        node3.removeConnectedNode(node1);
-        assertTrue(node1.containsConnectedNode(node2));
-        assertFalse(node1.containsConnectedNode(node3));
-        assertTrue(node2.containsConnectedNode(node1));
-        assertTrue(node2.containsConnectedNode(node3));
-        assertFalse(node3.containsConnectedNode(node1));
-        assertTrue(node3.containsConnectedNode(node2));
+        assertTrue(node1.containsConnectedEdge(edge12));
+        assertTrue(node1.containsConnectedEdge(edge13));
+        assertTrue(node2.containsConnectedEdge(edge23));
+        assertTrue(node2.containsConnectedEdge(edge12));
+        assertTrue(node3.containsConnectedEdge(edge23));
+        assertTrue(node3.containsConnectedEdge(edge13));
+
+        node3.removeConnectedEdge(edge23);
+
+        assertTrue(node1.containsConnectedEdge(edge12));
+        assertTrue(node1.containsConnectedEdge(edge13));
+        assertTrue(node2.containsConnectedEdge(edge23));
+        assertTrue(node2.containsConnectedEdge(edge12));
+        assertFalse(node3.containsConnectedEdge(edge23));
+        assertTrue(node3.containsConnectedEdge(edge13));
     }
 
     @Test
-    public void testReplaceConnectedNode() {
+    public void testReplaceConnectedEdge() {
         Node node1 = new Node(1);
         Node node2 = new Node(2);
         Node node3 = new Node(3);
         Node node4 = new Node(4);
 
-        node1.addConnectedNode(node2);
-        node1.addConnectedNode(node3);
-        node1.replaceConnectedNode(node3, node4);
+        Edge edge12 = new UndirectedEdge(node1, node2);
+        Edge edge13 = new UndirectedEdge(node1, node3);
+        Edge edge23 = new UndirectedEdge(node2, node3);
+        Edge edge24 = new UndirectedEdge(node2, node4);
+        node1.addConnectedEdge(edge12);
+        node1.addConnectedEdge(edge13);
+        node2.addConnectedEdge(edge23);
+        node2.addConnectedEdge(edge12);
+        node3.addConnectedEdge(edge13);
+        node3.addConnectedEdge(edge23);
 
-        assertEquals(2, node1.getConnectedNodes().size());
-        assertTrue(node1.getConnectedNodes().contains(node2));
-        assertFalse(node1.getConnectedNodes().contains(node3));
-        assertTrue(node1.getConnectedNodes().contains(node4));
+        node2.replaceConnectedEdge(edge23, edge24);
+        assertTrue(node1.containsConnectedEdge(edge12));
+        assertTrue(node1.containsConnectedEdge(edge13));
+        assertFalse(node2.containsConnectedEdge(edge23));
+        assertTrue(node2.containsConnectedEdge(edge12));
+        assertTrue(node2.containsConnectedEdge(edge24));
+        assertTrue(node3.containsConnectedEdge(edge23));
+        assertTrue(node3.containsConnectedEdge(edge13));
     }
 
     @Test

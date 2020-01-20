@@ -2,7 +2,7 @@ package Graph;
 
 import java.util.Objects;
 
-final class DirectedEdge extends Edge {
+final class DirectedEdge extends Edge implements Cloneable {
 
     DirectedEdge(final Node tail, final Node head) {
         super(tail, head);
@@ -14,6 +14,11 @@ final class DirectedEdge extends Edge {
 
     Node getHead() {
         return getEncompassingNodes().get(1);
+    }
+
+    @Override
+    public Object clone() {
+        return new DirectedEdge((Node) getTail().clone(), (Node) getHead().clone());
     }
 
     @Override

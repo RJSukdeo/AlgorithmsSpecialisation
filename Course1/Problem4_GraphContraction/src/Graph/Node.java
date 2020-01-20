@@ -1,49 +1,49 @@
 package Graph;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
-final class Node {
+final class Node implements Cloneable{
 
     private final int nodeId;
-    private Set<Node> connectedNodes = new HashSet<>();
+    private final List<Edge> connectedEdges = new ArrayList<>();
 
     Node(final int nodeId) {
         this.nodeId = nodeId;
     }
 
-    void addConnectedNode(final Node node) {
-        connectedNodes.add(node);
+    void addConnectedEdge(final Edge edge) {
+        connectedEdges.add(edge);
     }
 
-    void addConnectedNode(final Node... nodes) {
-        for (Node node : nodes) {
-            addConnectedNode(node);
+    void addConnectedEdge(final Edge... edges) {
+        connectedEdges.addAll(Arrays.asList(edges));
+    }
+
+    boolean containsConnectedEdge(final Edge edge) {
+        return connectedEdges.contains(edge);
+    }
+
+    void replaceConnectedEdge(final Edge oldEdge, final Edge newEdge) {
+        if (connectedEdges.contains(oldEdge)) {
+            connectedEdges.set(connectedEdges.indexOf(oldEdge), newEdge);
         }
     }
 
-    boolean containsConnectedNode(final Node node) {
-        return connectedNodes.contains(node);
-    }
-
-    void replaceConnectedNode(final Node oldNode, final Node newNode) {
-        connectedNodes.remove(oldNode);
-        if (getId() != newNode.getId()) {
-            connectedNodes.add(newNode);
-        }
-    }
-
-    boolean removeConnectedNode(final Node node) {
-        return connectedNodes.remove(node);
+    void removeConnectedEdge(final Edge edge) {
+        connectedEdges.remove(edge);
     }
 
     int getId() {
         return nodeId;
     }
 
-    Set<Node> getConnectedNodes() {
-        return connectedNodes;
+    List<Edge> getConnectedEdges() {
+        return connectedEdges;
+    }
+
+    @Override
+    public Object clone() {
+        return new Node(this.getId());
     }
 
     @Override
@@ -63,12 +63,8 @@ final class Node {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Node with nodeId = " + getId() + ".");
-        if (!getConnectedNodes().isEmpty()) {
-            sb.append(" Connected Node IDs {");
-            for (Node node : getConnectedNodes()) {
-                sb.append(node.getId() + " ");
-            }
-            sb.append("}");
+        if (!getConnectedEdges().isEmpty()) {
+            sb.append(" # Connected Edges {").append(getConnectedEdges().size()).append("}");
         }
         return sb.toString();
     }

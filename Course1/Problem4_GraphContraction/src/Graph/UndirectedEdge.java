@@ -2,7 +2,7 @@ package Graph;
 
 import java.util.Objects;
 
-final class UndirectedEdge extends Edge {
+final class UndirectedEdge extends Edge implements Cloneable {
 
     UndirectedEdge(final Node node1, final Node node2) {
         super(node1, node2);
@@ -14,6 +14,11 @@ final class UndirectedEdge extends Edge {
         if (o == null || getClass() != o.getClass()) return false;
         UndirectedEdge undirectedEdge = (UndirectedEdge) o;
         return getEncompassingNodes().containsAll(undirectedEdge.getEncompassingNodes());
+    }
+
+    @Override
+    public Object clone() {
+        return new UndirectedEdge((Node) getEncompassingNodes().get(0).clone(), (Node) getEncompassingNodes().get(1).clone());
     }
 
     @Override

@@ -15,6 +15,7 @@ abstract class Edge {
     void replaceNode(final Node oldNode, final Node newNode) {
         if (encompassingNodes.contains(oldNode)) {
             encompassingNodes.set(encompassingNodes.indexOf(oldNode), newNode);
+            newNode.addConnectedEdge(this);
         }
     }
 
@@ -28,6 +29,15 @@ abstract class Edge {
 
     List<Node> getEncompassingNodes() {
         return encompassingNodes;
+    }
+
+    void removeEdgeFromNodes() {
+        encompassingNodes.forEach(node -> node.removeConnectedEdge(this));
+        encompassingNodes.clear();
+    }
+
+    void updateNodesWithEdge() {
+        encompassingNodes.forEach(node -> node.addConnectedEdge(this));
     }
 
 }
