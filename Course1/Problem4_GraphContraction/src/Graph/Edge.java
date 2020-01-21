@@ -3,7 +3,7 @@ package Graph;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class Edge {
+abstract class Edge implements Cloneable {
 
     private final List<Node> encompassingNodes = new ArrayList<>(2);
 

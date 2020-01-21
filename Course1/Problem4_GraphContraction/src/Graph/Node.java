@@ -43,7 +43,11 @@ final class Node implements Cloneable{
 
     @Override
     public Object clone() {
-        return new Node(this.getId());
+        Node node = new Node(this.getId());
+        for (Edge edge : this.getConnectedEdges()) {
+            node.addConnectedEdge(edge);
+        }
+        return node;
     }
 
     @Override
