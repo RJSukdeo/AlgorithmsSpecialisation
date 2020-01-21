@@ -16,7 +16,12 @@ public final class GraphGenerator {
     }
 
     private GraphGenerator(final DirectedGraphInputs graphInputs) {
-
+        List<List<Integer>> edgeInfo = graphInputs.getOrganisedInputs();
+        for (List<Integer> entry : edgeInfo) {
+            nodes.add(new Node(entry.get(0)));
+            nodes.add(new Node(entry.get(1)));
+            createDirectedEdge(entry.get(0), entry.get(1));
+        }
     }
 
     public static GraphGenerator getGeneratorUndirected(final UndirectedGraphInputs graphInputs) {
@@ -61,6 +66,15 @@ public final class GraphGenerator {
                 edges.add(undirectedEdge);
             }
         }
+    }
+
+    private void createDirectedEdge(final int tailId, final int headId) {
+        Node tailNode = getNode(tailId);
+        Node headNode = getNode(headId);
+        DirectedEdge edge = new DirectedEdge(tailNode, headNode);
+        edges.add(edge);
+        tailNode.addConnectedEdge(edge);
+        headNode.addConnectedEdge(edge);
     }
 
     private Node getNode(final int nodeId) {

@@ -1,13 +1,10 @@
 package Graph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-class GraphInput {
+class GraphTestData {
 
-    private GraphInput() {
+    private GraphTestData() {
     }
 
     ;
@@ -19,7 +16,7 @@ class GraphInput {
 //  |  \  |
 //  |   \ |
 //  4-----3
-    public static Map<Integer, List<Integer>> getGraphInputs() {
+    public static Map<Integer, List<Integer>> getUndirectedGraphInputs() {
         Map<Integer, List<Integer>> graphMap = new HashMap<>();
 
         // Define node 1
@@ -49,6 +46,27 @@ class GraphInput {
         graphMap.put(4, connectedNodes);
 
         return graphMap;
+    }
+
+    public static List<List<Integer>> getDirectedGraphInputs() {
+        List<List<Integer>> graphInfo = new ArrayList<>();
+        graphInfo.add(getIntegerList(2, 3));
+        graphInfo.add(getIntegerList(3, 4));
+        graphInfo.add(getIntegerList(4, 2));
+        graphInfo.add(getIntegerList(4, 5));
+        graphInfo.add(getIntegerList(5, 6));
+        graphInfo.add(getIntegerList(6, 1));
+        graphInfo.add(getIntegerList(1, 5));
+        graphInfo.add(getIntegerList(6, 9));
+        graphInfo.add(getIntegerList(9, 7));
+        graphInfo.add(getIntegerList(7, 8));
+        graphInfo.add(getIntegerList(8, 9));
+        return graphInfo;
+    }
+
+    private static List<Integer> getIntegerList(Integer... entries) {
+        List<Integer> collection = new ArrayList<>(entries.length);
+        return Arrays.asList(entries);
     }
 
 }

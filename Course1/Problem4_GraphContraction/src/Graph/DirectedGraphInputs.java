@@ -1,30 +1,38 @@
 package Graph;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DirectedGraphInputs {
 
-    private final Map<Integer, Integer> organisedInputs;
+    private final List<List<Integer>> organisedInputs;
 
-    private DirectedGraphInputs(Map<Integer, Integer> structuredInput) {
+    private DirectedGraphInputs(List<List<Integer>> structuredInput) {
         this.organisedInputs = structuredInput;
     }
 
-    Map<Integer, Integer> getOrganisedInputs() {
+    List<List<Integer>> getOrganisedInputs() {
         return organisedInputs;
     }
 
     public static class InputBuilder {
 
-        private final Map<Integer, Integer> organisedInputs;
+        private final List<List<Integer>> organisedInputs;
 
         public InputBuilder() {
-            this.organisedInputs = new HashMap<>();
+            this.organisedInputs = new ArrayList<>();
         }
 
-        public DirectedGraphInputs.InputBuilder addEntry(Integer tailNodeId, Integer headNodeId) {
-            this.organisedInputs.put(tailNodeId, headNodeId);
+        public InputBuilder addEntry(Integer tailNodeId, Integer headNodeId) {
+            List<Integer> entries = new ArrayList<>(2);
+            entries.add(tailNodeId);
+            entries.add(headNodeId);
+            organisedInputs.add(entries);
+            return this;
+        }
+
+        public InputBuilder addEntries(List<List<Integer>> entries) {
+            entries.forEach(entry -> organisedInputs.add(entry));
             return this;
         }
 
