@@ -10,9 +10,9 @@ public final class DepthFirstSearchAlgorithm {
     private Stack<Node> nodesToVisit;
     private Set<Node> nodes;
 
-    public DepthFirstSearchAlgorithm(DirectedGraphGenerator undirectedGraphGenerator, int startingNodeId) {
+    public DepthFirstSearchAlgorithm(DirectedGraphGenerator DirectedGraphGenerator, int startingNodeId) {
         nodesToVisit = new Stack<>();
-        nodes = undirectedGraphGenerator.getNodes(true);
+        nodes = DirectedGraphGenerator.getNodes(true);
         populateMaps();
         run(startingNodeId);
     }
@@ -34,9 +34,9 @@ public final class DepthFirstSearchAlgorithm {
         visitNode(node);
         List<DirectedEdge> connectingEdges = node.getConnectedEdges().stream().map(e -> (DirectedEdge) e).filter(edge -> edge.getTail().equals(node)).filter(edge -> !nodeVisited.get(edge.getHead())).collect(Collectors.toList());
         if (!connectingEdges.isEmpty()) {
-            for (DirectedEdge connectingEdge : connectingEdges) {
-                nodesToVisit.add(connectingEdge.getHead());
-            }
+            connectingEdges.forEach(directedEdge -> nodesToVisit.add(directedEdge.getHead()));
+        }
+        if (!nodesToVisit.isEmpty()) {
             order = run(nodesToVisit.pop(), order);
         }
         updateOrderVisited(node, order);
