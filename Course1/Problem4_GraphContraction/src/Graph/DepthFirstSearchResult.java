@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class DepthFirstSearchResult {
+public final class DepthFirstSearchResult {
 
     private List<Integer> nodeIds;
 

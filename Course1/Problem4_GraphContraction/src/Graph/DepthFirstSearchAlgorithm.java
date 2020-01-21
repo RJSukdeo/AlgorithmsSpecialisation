@@ -5,30 +5,53 @@ import java.util.stream.Collectors;
 
 public final class DepthFirstSearchAlgorithm {
 
-    private DirectedGraphGenerator graphGenerator;
+    private final DirectedGraphGenerator graphGenerator;
     private Map<Node, Boolean> nodeVisited;
     private Map<Node, Integer> orderVisited;
     private Stack<Node> nodesToVisit;
     private Set<Node> nodes;
 
-    public DepthFirstSearchAlgorithm(DirectedGraphGenerator directedGraphGenerator) {
-        this.graphGenerator = directedGraphGenerator;
+    public DepthFirstSearchAlgorithm(final DirectedGraphGenerator graphGenerator) {
+        this.graphGenerator = graphGenerator;
+        nodeVisited = new HashMap<>();
+        orderVisited = new HashMap<>();
+        nodesToVisit = new Stack<>();
     }
 
-    public DepthFirstSearchResult run(int startingNodeId) {
+    // Run across all nodes in no particular order.
+    public DepthFirstSearchResult run() {
+        initialiseAlgorithm();
+        int order = 0;
+        for (final Node node : nodes) {
+            order = run(node, order);
+        }
+        return new DepthFirstSearchResult(this);
+    }
+
+    // Run across nodes in order implied by list.
+    public DepthFirstSearchResult run(final List<Integer> nodeIds) {
+        initialiseAlgorithm();
+        int order = 0;
+        List<Node> nodes = nodeIds.stream().map(nodeId -> getNode(nodeId)).collect(Collectors.toList());
+        for (final Node node : nodes) {
+            order = run(node, order);
+        }
+        return new DepthFirstSearchResult(this);
+    }
+
+    public DepthFirstSearchResult run(final int startingNodeId) {
         initialiseAlgorithm();
         run(getNode(startingNodeId), 0);
         return new DepthFirstSearchResult(this);
     }
 
     private void initialiseAlgorithm() {
-        nodesToVisit = new Stack<>();
         nodes = graphGenerator.getNodes(true);
         populateMaps();
     }
 
     private void populateMaps() {
-        nodeVisited = new HashMap<>(nodes.size());
+        nodeVisited =  new HashMap<>(nodes.size());
         orderVisited = new HashMap<>(nodes.size());
         for (Node node : nodes) {
             nodeVisited.put(node, false);
@@ -36,7 +59,7 @@ public final class DepthFirstSearchAlgorithm {
         }
     }
 
-    private int run(Node node, int order) {
+    private int run(final Node node, int order) {
         visitNode(node);
         List<DirectedEdge> connectingEdges = node.getConnectedEdges().stream().map(e -> (DirectedEdge) e).filter(edge -> edge.getTail().equals(node)).filter(edge -> !nodeVisited.get(edge.getHead())).collect(Collectors.toList());
         if (!connectingEdges.isEmpty()) {
@@ -49,15 +72,15 @@ public final class DepthFirstSearchAlgorithm {
         return ++order;
     }
 
-    private Node getNode(int nodeId) {
+    private Node getNode(final int nodeId) {
         return nodes.stream().filter(node -> node.getId() == nodeId).findFirst().get();
     }
 
-    private void visitNode(Node node) {
+    private void visitNode(final Node node) {
         nodeVisited.put(node, true);
     }
 
-    private void updateOrderVisited(Node node, int order) {
+    private void updateOrderVisited(final Node node, final int order) {
         orderVisited.put(node, order);
     }
 

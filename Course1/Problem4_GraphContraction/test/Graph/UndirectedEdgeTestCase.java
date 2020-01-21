@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class UndirectedEdgeTestCase {
+public final class UndirectedEdgeTestCase {
 
     @Test
     public void testConstructor() {

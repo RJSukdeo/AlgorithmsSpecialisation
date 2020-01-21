@@ -5,11 +5,11 @@ import org.junit.Test;
 import static Graph.DirectedGraphInputs.InputBuilder;
 import static org.junit.Assert.assertEquals;
 
-public class DepthFirstTestCase {
+public final class DepthFirstTestCase {
 
     @Test
     public void testRunSingleStartedNode() {
-        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(new InputBuilder().addEntries(GraphTestData.getDirectedGraphInputs()).build());
+        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(new InputBuilder().addEntries(GraphTestData.getReversedDirectedGraphInputs()).build());
         DepthFirstSearchAlgorithm algorithm = new DepthFirstSearchAlgorithm(graphGenerator);
         DepthFirstSearchResult result = algorithm.run(9);
 

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UndirectedGraphInputs {
+public final class UndirectedGraphInputs {
 
     private final Map<Integer, List<Integer>> organisedInputs;
 

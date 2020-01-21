@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class DirectedEdgeTestCase {
+public final class DirectedEdgeTestCase {
 
     @Test
     public void testGetHeadAndTail() {

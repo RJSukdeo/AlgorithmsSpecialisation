@@ -8,11 +8,11 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class DirectedGraphGeneratorTestCase {
+public final class DirectedGraphGeneratorTestCase {
 
     @Test
     public void testGetGeneratorDirected() {
-        DirectedGraphGenerator undirectedGraphGenerator = DirectedGraphGenerator.getGeneratorDirected(new DirectedGraphInputs.InputBuilder().addEntries(GraphTestData.getDirectedGraphInputs()).build());
+        DirectedGraphGenerator undirectedGraphGenerator = DirectedGraphGenerator.getGeneratorDirected(new DirectedGraphInputs.InputBuilder().addEntries(GraphTestData.getReversedDirectedGraphInputs()).build());
         Set<Node> nodes = undirectedGraphGenerator.getNodes(false);
         Collection<DirectedEdge> edges = undirectedGraphGenerator.getEdges(false);
 

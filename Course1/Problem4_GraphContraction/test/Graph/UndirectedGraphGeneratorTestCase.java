@@ -8,7 +8,7 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class UndirectedGraphGeneratorTestCase {
+public final class UndirectedGraphGeneratorTestCase {
 
     @Test
     public void testGetGeneratorUndirected() {

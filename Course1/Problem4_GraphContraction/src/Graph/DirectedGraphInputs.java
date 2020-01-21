@@ -3,7 +3,7 @@ package Graph;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DirectedGraphInputs {
+public final class DirectedGraphInputs {
 
     private final List<List<Integer>> organisedInputs;
 

@@ -2,7 +2,7 @@ package Graph;
 
 import java.util.*;
 
-class GraphTestData {
+final class GraphTestData {
 
     private GraphTestData() {
     }
@@ -48,7 +48,7 @@ class GraphTestData {
         return graphMap;
     }
 
-    public static List<List<Integer>> getDirectedGraphInputs() {
+    public static List<List<Integer>> getReversedDirectedGraphInputs() {
         List<List<Integer>> graphInfo = new ArrayList<>();
         graphInfo.add(getIntegerList(2, 3));
         graphInfo.add(getIntegerList(3, 4));
@@ -61,6 +61,12 @@ class GraphTestData {
         graphInfo.add(getIntegerList(9, 7));
         graphInfo.add(getIntegerList(7, 8));
         graphInfo.add(getIntegerList(8, 9));
+        return graphInfo;
+    }
+
+    public static List<List<Integer>> getDirectedGraphInputs() {
+        List<List<Integer>> graphInfo = new ArrayList<>();
+
         return graphInfo;
     }
 
