@@ -1,6 +1,6 @@
 import Graph.ContractionAlgorithm;
-import Graph.ContractionAlgorithmResults;
-import Graph.GraphGenerator;
+import Graph.ContractionResult;
+import Graph.UndirectedGraphGenerator;
 import Graph.UndirectedGraphInputs;
 import Graph.UndirectedGraphInputs.InputBuilder;
 
@@ -11,11 +11,11 @@ import java.util.*;
 public class AssessmentC1P4 {
 
     public static void main(String[] args) throws FileNotFoundException {
-        GraphGenerator graphGenerator = GraphGenerator.getGeneratorUndirected(getGraphInfo());
-        int smallestCrossingEdges = graphGenerator.getNodes(false).size();
-        for (int i = 0; i < Math.pow(graphGenerator.getNodes(false).size(), 2); i++) {
-            ContractionAlgorithm contractionAlgorithm = new ContractionAlgorithm(graphGenerator);
-            ContractionAlgorithmResults results = contractionAlgorithm.run();
+        UndirectedGraphGenerator undirectedGraphGenerator = UndirectedGraphGenerator.getGeneratorUndirected(getGraphInfo());
+        int smallestCrossingEdges = undirectedGraphGenerator.getNodes(false).size();
+        for (int i = 0; i < Math.pow(undirectedGraphGenerator.getNodes(false).size(), 2); i++) {
+            ContractionAlgorithm contractionAlgorithm = new ContractionAlgorithm(undirectedGraphGenerator);
+            ContractionResult results = contractionAlgorithm.run();
             if (results.getCrossingEdges() < smallestCrossingEdges) {
                 smallestCrossingEdges = results.getCrossingEdges();
             }

@@ -1,10 +1,10 @@
 package Graph;
 
-public final class ContractionAlgorithmResults {
+public final class ContractionResult {
 
     private final int numCrossingEdges;
 
-    public ContractionAlgorithmResults(final int crossingEdges) {
+    public ContractionResult(final int crossingEdges) {
         this.numCrossingEdges = crossingEdges;
     }
 

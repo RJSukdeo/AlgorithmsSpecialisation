@@ -10,22 +10,21 @@ public final class ContractionAlgorithm {
 
     private final Random randomGenerator;
     private final Set<Node> nodes;
-    private final List<Edge> edges;
+    private final List<UndirectedEdge> edges;
 
-
-    public ContractionAlgorithm(GraphGenerator graphGenerator, Random randomGenerator) {
+    public ContractionAlgorithm(UndirectedGraphGenerator undirectedGraphGenerator, Random randomGenerator) {
         this.randomGenerator = randomGenerator;
-        this.nodes = graphGenerator.getNodes(true);
-        this.edges = graphGenerator.getEdges(true);
+        this.nodes = undirectedGraphGenerator.getNodes(true);
+        this.edges = undirectedGraphGenerator.getEdges(true);
     }
 
-    public ContractionAlgorithm(GraphGenerator graphGenerator) {
-        this(graphGenerator, new Random());
+    public ContractionAlgorithm(UndirectedGraphGenerator undirectedGraphGenerator) {
+        this(undirectedGraphGenerator, new Random());
     }
 
-    public ContractionAlgorithmResults run() {
+    public ContractionResult run() {
         if (nodes.size() <= 2) {
-            return new ContractionAlgorithmResults(edges.size());
+            return new ContractionResult(edges.size());
         }
         Edge contractionEdge = edges.get(randomGenerator.nextInt(edges.size()));
         List<Node> encompassingNodes = new ArrayList<>(contractionEdge.getEncompassingNodes());
@@ -38,21 +37,21 @@ public final class ContractionAlgorithm {
     }
 
     private void removeEdgesBetweenNodes(final Node node1, final Node node2) {
-        List<Edge> edgesToRemove = getEdges(node1, node2);
+        List<UndirectedEdge> edgesToRemove = getEdges(node1, node2);
         edges.removeAll(edgesToRemove);
         edgesToRemove.forEach(Edge::removeEdgeFromNodes);
     }
 
-    private List<Edge> getEdges(final Node node1, final Node node2) {
+    private List<UndirectedEdge> getEdges(final Node node1, final Node node2) {
         return edges.stream().filter(edge -> edge.containsNode(node1) && edge.containsNode(node2)).collect(Collectors.toList());
     }
 
-    private List<Edge> getEdges(final Node node) {
+    private List<UndirectedEdge> getEdges(final Node node) {
         return edges.stream().filter(edge -> edge.containsNode(node)).collect(Collectors.toList());
     }
 
     private void redirectEdges(final Node remainingNode, final Node destroyedNode) {
-        List<Edge> edgesAroundDestroyedNode = getEdges(destroyedNode);
+        List<UndirectedEdge> edgesAroundDestroyedNode = getEdges(destroyedNode);
         edgesAroundDestroyedNode.forEach(edge -> edge.replaceNode(destroyedNode, remainingNode));
     }
 
