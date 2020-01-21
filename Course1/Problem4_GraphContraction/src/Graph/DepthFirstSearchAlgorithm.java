@@ -5,16 +5,26 @@ import java.util.stream.Collectors;
 
 public final class DepthFirstSearchAlgorithm {
 
+    private DirectedGraphGenerator graphGenerator;
     private Map<Node, Boolean> nodeVisited;
     private Map<Node, Integer> orderVisited;
     private Stack<Node> nodesToVisit;
     private Set<Node> nodes;
 
-    public DepthFirstSearchAlgorithm(DirectedGraphGenerator DirectedGraphGenerator, int startingNodeId) {
+    public DepthFirstSearchAlgorithm(DirectedGraphGenerator directedGraphGenerator) {
+        this.graphGenerator = directedGraphGenerator;
+    }
+
+    public DepthFirstSearchResult run(int startingNodeId) {
+        initialiseAlgorithm();
+        run(getNode(startingNodeId), 0);
+        return new DepthFirstSearchResult(this);
+    }
+
+    private void initialiseAlgorithm() {
         nodesToVisit = new Stack<>();
-        nodes = DirectedGraphGenerator.getNodes(true);
+        nodes = graphGenerator.getNodes(true);
         populateMaps();
-        run(startingNodeId);
     }
 
     private void populateMaps() {
@@ -24,10 +34,6 @@ public final class DepthFirstSearchAlgorithm {
             nodeVisited.put(node, false);
             orderVisited.put(node, nodes.size());
         }
-    }
-
-    private void run(int startingNodeId) {
-        run(getNode(startingNodeId), 0);
     }
 
     private int run(Node node, int order) {
@@ -41,10 +47,6 @@ public final class DepthFirstSearchAlgorithm {
         }
         updateOrderVisited(node, order);
         return ++order;
-    }
-
-    public DepthFirstSearchResult getResult() {
-        return new DepthFirstSearchResult(this);
     }
 
     private Node getNode(int nodeId) {
