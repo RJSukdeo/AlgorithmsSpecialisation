@@ -4,15 +4,15 @@ import Splitter.*;
 import java.math.BigInteger;
 import java.util.List;
 
-public class KaratsubaMultiplier {
+public final class KaratsubaMultiplier {
 
     private BigInteger result;
 
-    public KaratsubaMultiplier(BigInteger a, BigInteger b) {
+    public KaratsubaMultiplier(final BigInteger a, final BigInteger b) {
         this.result = multiply(SplitterUtil.split(a), SplitterUtil.split(b));
     }
 
-    private BigInteger multiply(List<BigInteger> elements1, List<BigInteger> elements2) {
+    private BigInteger multiply(final List<BigInteger> elements1, final List<BigInteger> elements2) {
         int numElements = elements1.size();
         if (numElements == 1) {
             return BigInteger.valueOf(elements1.get(0).intValue() * elements2.get(0).intValue());
@@ -30,7 +30,7 @@ public class KaratsubaMultiplier {
                 add(bd);
     }
 
-    private BigInteger padNumbers(BigInteger number, long noOfZeros) {
+    private BigInteger padNumbers(final BigInteger number, final long noOfZeros) {
         List<BigInteger> elements = SplitterUtil.split(number);
         for (int i = 0; i < noOfZeros; i++) {
             elements.add(BigInteger.ZERO);
@@ -38,7 +38,7 @@ public class KaratsubaMultiplier {
         return aggregateNumbers(elements);
     }
 
-    private BigInteger aggregateNumbers(List<BigInteger> elements) {
+    private BigInteger aggregateNumbers(final List<BigInteger> elements) {
         StringBuilder sb = new StringBuilder();
         for (BigInteger e : elements) {
             sb.append(e);

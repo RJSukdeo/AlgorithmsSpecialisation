@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class InversionsCounterTest {
+public final class InversionsCounterTest {
 
     @Test
     public void testBasicSorting() {

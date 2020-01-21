@@ -2,10 +2,10 @@ package Pivot;
 
 import java.util.List;
 
-public class RightMostPivotSelector implements IPivotSelector {
+public final class RightMostPivotSelector implements IPivotSelector {
 
     @Override
-    public int getPivotIndex(List<Integer> collection, int startIndex, int endIndex) {
+    public int getPivotIndex(final List<Integer> collection, final int startIndex, final int endIndex) {
         return endIndex;
     }
 

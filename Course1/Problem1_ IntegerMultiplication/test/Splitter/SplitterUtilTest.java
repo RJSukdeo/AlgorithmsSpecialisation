@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.math.BigInteger;
 import java.util.List;
 
-public class SplitterUtilTest {
+public final class SplitterUtilTest {
 
     @Test
     public void testSplitDouble() {

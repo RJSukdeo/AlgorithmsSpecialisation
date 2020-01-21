@@ -26,7 +26,7 @@ public final class InversionsCounter {
         return processedElements.getElements();
     }
 
-    private static InversionsContainer countSort(List<Integer> elements) {
+    private static InversionsContainer countSort(final List<Integer> elements) {
         if (elements.size() < 2) {
             return new InversionsContainer(elements, 0);
         }
@@ -36,7 +36,7 @@ public final class InversionsCounter {
         return new InversionsContainer(splitResult.getElements(), leftResult.getNumInversions() + rightResult.getNumInversions() + splitResult.getNumInversions());
     }
 
-    private static InversionsContainer countSortSplit(List<Integer> sortedElementsLeft, List<Integer> sortedElementsRight) {
+    private static InversionsContainer countSortSplit(final List<Integer> sortedElementsLeft, final List<Integer> sortedElementsRight) {
         long numOfInversions = 0;
         int totalNumberOfElemeents = sortedElementsLeft.size() + sortedElementsRight.size();
         List<Integer> sortedElements = new ArrayList<>(totalNumberOfElemeents);

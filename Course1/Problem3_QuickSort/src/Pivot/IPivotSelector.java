@@ -3,5 +3,5 @@ package Pivot;
 import java.util.List;
 
 public interface IPivotSelector {
-    int getPivotIndex(List<Integer> collection, int startIndex, int endIndex);
+    int getPivotIndex(final List<Integer> collection, final int startIndex, final int endIndex);
 }
