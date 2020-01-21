@@ -2,6 +2,9 @@ package Graph;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static Graph.DirectedGraphInputs.InputBuilder;
 import static org.junit.Assert.assertEquals;
 
@@ -54,6 +57,35 @@ public final class DepthFirstTestCase {
         assertEquals(5, (long) result.getVisitedNodes().get(6));
         assertEquals(4, (long) result.getVisitedNodes().get(7));
         assertEquals(3, (long) result.getVisitedNodes().get(8));
+    }
+
+    @Test
+    public void testRunAllRandomNodes() {
+        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(new InputBuilder().addEntries(GraphTestData.getReversedDirectedGraphInputs()).build());
+        DepthFirstSearchResult result = new DepthFirstSearchAlgorithm(graphGenerator).run();
+
+        assertEquals(9, result.getVisitedNodes().size());
+    }
+
+    @Test
+    public void testRunCertainNodes() {
+        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(new InputBuilder().addEntries(GraphTestData.getReversedDirectedGraphInputs()).build());
+        List<Integer> nodeIds = new ArrayList<>(9);
+        nodeIds.add(9);
+        nodeIds.add(6);
+        nodeIds.add(4);
+        DepthFirstSearchResult result = new DepthFirstSearchAlgorithm(graphGenerator).run(nodeIds);
+
+        assertEquals(9, result.getVisitedNodes().size());
+        assertEquals(8, (long) result.getVisitedNodes().get(0));
+        assertEquals(7, (long) result.getVisitedNodes().get(1));
+        assertEquals(9, (long) result.getVisitedNodes().get(2));
+        assertEquals(5, (long) result.getVisitedNodes().get(3));
+        assertEquals(1, (long) result.getVisitedNodes().get(4));
+        assertEquals(6, (long) result.getVisitedNodes().get(5));
+        assertEquals(3, (long) result.getVisitedNodes().get(6));
+        assertEquals(2, (long) result.getVisitedNodes().get(7));
+        assertEquals(4, (long) result.getVisitedNodes().get(8));
     }
 
 }

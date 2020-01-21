@@ -23,7 +23,9 @@ public final class DepthFirstSearchAlgorithm {
         initialiseAlgorithm();
         int order = 0;
         for (final Node node : nodes) {
-            order = run(node, order);
+            if (!nodeVisited.get(node)) {
+                order = run(node, order);
+            }
         }
         return new DepthFirstSearchResult(this);
     }
@@ -34,7 +36,9 @@ public final class DepthFirstSearchAlgorithm {
         int order = 0;
         List<Node> nodes = nodeIds.stream().map(nodeId -> getNode(nodeId)).collect(Collectors.toList());
         for (final Node node : nodes) {
-            order = run(node, order);
+            if (!nodeVisited.get(node)) {
+                order = run(node, order);
+            }
         }
         return new DepthFirstSearchResult(this);
     }
@@ -91,4 +95,5 @@ public final class DepthFirstSearchAlgorithm {
     Map<Node, Integer> getOrderVisited() {
         return orderVisited;
     }
+
 }
