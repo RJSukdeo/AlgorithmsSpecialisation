@@ -8,9 +8,13 @@ import java.util.stream.Collectors;
 
 public final class DepthFirstSearchResult {
 
-    private List<Integer> nodeIds;
+    private DepthFirstSearchAlgorithm algorithm;
 
     DepthFirstSearchResult(final DepthFirstSearchAlgorithm algorithm) {
+        this.algorithm = algorithm;
+    }
+
+    public List<Integer> getNodeIdsVisited() {
         Map<Node, Boolean> nodesVisitedMap = algorithm.getNodeVisited();
         List<Node> nodesVisited = nodesVisitedMap.keySet().stream().filter(node -> algorithm.getNodeVisited().get(node)).collect(Collectors.toList());
         Map<Node, Integer> orderNodesVisitedMap = algorithm.getOrderVisited();
@@ -18,11 +22,11 @@ public final class DepthFirstSearchResult {
         for (Node node : nodesVisited) {
             tempArr[orderNodesVisitedMap.get(node)] = node.getId();
         }
-        nodeIds = new ArrayList<>(Arrays.asList(tempArr));
+        return new ArrayList<>(Arrays.asList(tempArr));
     }
 
-    public List<Integer> getVisitedNodes() {
-        return nodeIds;
+    public Map<Integer, Integer> getLeaderToGraphSize() {
+        return algorithm.getLeaderToGraphSize();
     }
 
 }

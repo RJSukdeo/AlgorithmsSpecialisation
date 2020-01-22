@@ -8,6 +8,7 @@ public final class DepthFirstSearchAlgorithm {
     private final DirectedGraphGenerator graphGenerator;
     private Map<Node, Boolean> nodeVisited;
     private Map<Node, Integer> orderVisited;
+    private Map<Integer, Integer> leaderToResult;
     private Stack<Node> nodesToVisit;
     private Set<Node> nodes;
 
@@ -16,15 +17,19 @@ public final class DepthFirstSearchAlgorithm {
         nodeVisited = new HashMap<>();
         orderVisited = new HashMap<>();
         nodesToVisit = new Stack<>();
+        leaderToResult = new HashMap<>();
     }
 
     // Run across all nodes in no particular order.
     public DepthFirstSearchResult run() {
         initialiseAlgorithm();
         int order = 0;
+        int lastOrder = 0;
         for (final Node node : nodes) {
             if (!nodeVisited.get(node)) {
                 order = run(node, order);
+                leaderToResult.put(node.getId(), order - lastOrder);
+                lastOrder = order;
             }
         }
         return new DepthFirstSearchResult(this);
@@ -34,10 +39,13 @@ public final class DepthFirstSearchAlgorithm {
     public DepthFirstSearchResult run(final List<Integer> nodeIds) {
         initialiseAlgorithm();
         int order = 0;
+        int lastOrder = 0;
         List<Node> nodes = nodeIds.stream().map(nodeId -> getNode(nodeId)).collect(Collectors.toList());
         for (final Node node : nodes) {
             if (!nodeVisited.get(node)) {
                 order = run(node, order);
+                leaderToResult.put(node.getId(), order - lastOrder);
+                lastOrder = order;
             }
         }
         return new DepthFirstSearchResult(this);
@@ -45,7 +53,7 @@ public final class DepthFirstSearchAlgorithm {
 
     public DepthFirstSearchResult run(final int startingNodeId) {
         initialiseAlgorithm();
-        run(getNode(startingNodeId), 0);
+        leaderToResult.put(startingNodeId, run(getNode(startingNodeId), 0));
         return new DepthFirstSearchResult(this);
     }
 
@@ -57,6 +65,7 @@ public final class DepthFirstSearchAlgorithm {
     private void populateMaps() {
         nodeVisited =  new HashMap<>(nodes.size());
         orderVisited = new HashMap<>(nodes.size());
+        leaderToResult = new HashMap<>();
         for (Node node : nodes) {
             nodeVisited.put(node, false);
             orderVisited.put(node, nodes.size());
@@ -96,4 +105,7 @@ public final class DepthFirstSearchAlgorithm {
         return orderVisited;
     }
 
+    Map<Integer, Integer> getLeaderToGraphSize() {
+        return leaderToResult;
+    }
 }
