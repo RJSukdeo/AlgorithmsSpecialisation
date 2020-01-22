@@ -29,4 +29,14 @@ public final class DirectedEdgeTestCase {
         assertEquals(tail, edge.getTail());
     }
 
+    @Test
+    public void testSwapHeadTailNodes(){
+        Node head = new Node(0);
+        Node tail = new Node(1);
+        DirectedEdge edge = new DirectedEdge(tail, head);
+        edge.swapHeadTailNodes();
+        assertEquals(head, edge.getTail());
+        assertEquals(tail, edge.getHead());
+    }
+
 }

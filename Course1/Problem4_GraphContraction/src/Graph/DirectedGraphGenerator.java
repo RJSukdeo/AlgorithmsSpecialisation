@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public final class DirectedGraphGenerator {
+final class DirectedGraphGenerator {
 
     private final Set<Node> nodes = new HashSet<>();
     private final List<DirectedEdge> edges = new ArrayList<>();
@@ -19,11 +19,11 @@ public final class DirectedGraphGenerator {
         }
     }
 
-    public static DirectedGraphGenerator getGeneratorDirected(final DirectedGraphInputs graphInputs) {
+    static DirectedGraphGenerator getGeneratorDirected(final DirectedGraphInputs graphInputs) {
         return new DirectedGraphGenerator(graphInputs);
     }
 
-    public Set<Node> getNodes(boolean receiveCopy) {
+    Set<Node> getNodes(boolean receiveCopy) {
         if (receiveCopy) {
             Set<Node> copyOfNodes = new HashSet<>(nodes.size());
             nodes.forEach(node -> copyOfNodes.add((Node) node.clone()));
@@ -32,7 +32,7 @@ public final class DirectedGraphGenerator {
         return nodes;
     }
 
-    public List<DirectedEdge> getEdges(boolean receiveCopy) {
+    List<DirectedEdge> getEdges(boolean receiveCopy) {
         if (receiveCopy) {
             List<DirectedEdge> copyOfEdges = new ArrayList<>(edges.size());
             for (DirectedEdge edge : edges) {
@@ -41,6 +41,10 @@ public final class DirectedGraphGenerator {
             return copyOfEdges;
         }
         return edges;
+    }
+
+    void swapDirectionsAllEdges() {
+        edges.forEach(edge -> edge.swapHeadTailNodes());
     }
 
     private void createDirectedEdge(final int tailId, final int headId) {

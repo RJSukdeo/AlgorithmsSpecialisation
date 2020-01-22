@@ -16,6 +16,12 @@ final class DirectedEdge extends Edge implements Cloneable {
         return getEncompassingNodes().get(1);
     }
 
+    void swapHeadTailNodes() {
+        Node temp = getEncompassingNodes().get(0);
+        getEncompassingNodes().set(0, getEncompassingNodes().get(1));
+        getEncompassingNodes().set(1, temp);
+    }
+
     @Override
     public Object clone() {
         return new DirectedEdge((Node) getTail().clone(), (Node) getHead().clone());
