@@ -66,7 +66,17 @@ final class GraphTestData {
 
     public static List<List<Integer>> getDirectedGraphInputs() {
         List<List<Integer>> graphInfo = new ArrayList<>();
-
+        graphInfo.add(getIntegerList(1, 7));
+        graphInfo.add(getIntegerList(7, 4));
+        graphInfo.add(getIntegerList(4, 1));
+        graphInfo.add(getIntegerList(7, 9));
+        graphInfo.add(getIntegerList(9, 6));
+        graphInfo.add(getIntegerList(6, 3));
+        graphInfo.add(getIntegerList(3, 9));
+        graphInfo.add(getIntegerList(6, 8));
+        graphInfo.add(getIntegerList(8, 5));
+        graphInfo.add(getIntegerList(5, 2));
+        graphInfo.add(getIntegerList(2, 8));
         return graphInfo;
     }
 
