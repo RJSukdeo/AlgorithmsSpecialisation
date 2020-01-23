@@ -24,20 +24,13 @@ public final class StrongConnectedComponentAlgorithm {
     public StrongConnectedComponentResults run() {
         List<Integer> descendingNodeIds = nodes.stream().map(node -> node.getId()).sorted((Comparator.reverseOrder())).collect(Collectors.toList());
         DepthFirstSearchAlgorithm dfsAlgo = new DepthFirstSearchAlgorithm(graphGenerator);
-        List<Integer> resultantOrderNodeIds = dfsAlgo.run(descendingNodeIds).getNodeIdsVisited();
+        List<Integer> resultantOrderNodeIds = dfsAlgo.run(descendingNodeIds).getOrderedNodeIds();
+        Collections.reverse(resultantOrderNodeIds);
         graphGenerator.swapDirectionsAllEdges();
         nodes = graphGenerator.getNodes(true);
         dfsAlgo = new DepthFirstSearchAlgorithm(graphGenerator);
-        sccLeaderToGraphSize = dfsAlgo.run(reverseOrderOfList(resultantOrderNodeIds)).getLeaderToGraphSize();
+        sccLeaderToGraphSize = dfsAlgo.run(resultantOrderNodeIds).getLeaderToGraphSize();
         return new StrongConnectedComponentResults(this);
-    }
-
-    private List<Integer> reverseOrderOfList(List<Integer> originalList) {
-        List<Integer> reverseList = new ArrayList<>(originalList.size());
-        for (int i = originalList.size() -1 ; i > -1 ; i--) {
-            reverseList.add(originalList.get(i));
-        }
-        return reverseList;
     }
 
     Map<Integer, Integer> getSccLeaderToGraphSize() {

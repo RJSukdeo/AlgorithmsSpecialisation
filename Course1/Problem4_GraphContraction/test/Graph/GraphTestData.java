@@ -49,7 +49,7 @@ final class GraphTestData {
     }
 
     public static List<List<Integer>> getReversedDirectedGraphInputs() {
-        List<List<Integer>> graphInfo = new ArrayList<>();
+        List<List<Integer>> graphInfo = new ArrayList<>(11);
         graphInfo.add(getIntegerList(2, 3));
         graphInfo.add(getIntegerList(3, 4));
         graphInfo.add(getIntegerList(4, 2));
@@ -64,8 +64,8 @@ final class GraphTestData {
         return graphInfo;
     }
 
-    public static List<List<Integer>> getDirectedGraphInputs() {
-        List<List<Integer>> graphInfo = new ArrayList<>();
+    public static List<List<Integer>> getDirectedGraphInputs1() {
+        List<List<Integer>> graphInfo = new ArrayList<>(11);
         graphInfo.add(getIntegerList(1, 7));
         graphInfo.add(getIntegerList(7, 4));
         graphInfo.add(getIntegerList(4, 1));
@@ -80,8 +80,81 @@ final class GraphTestData {
         return graphInfo;
     }
 
+    public static List<List<Integer>> getDirectedGraphInputs2() {
+        List<List<Integer>> graphInfo = new ArrayList<>(5);
+        graphInfo.add(getIntegerList(1, 2));
+        graphInfo.add(getIntegerList(2, 3));
+        graphInfo.add(getIntegerList(3, 1));
+        graphInfo.add(getIntegerList(1, 4));
+        graphInfo.add(getIntegerList(5, 4));
+        return graphInfo;
+    }
+
+    public static List<List<Integer>> getDirectedGraphInputs3() {
+        List<List<Integer>> graphInfo = new ArrayList<>(5);
+        graphInfo.add(getIntegerList(3, 4));
+        graphInfo.add(getIntegerList(0, 3));
+        graphInfo.add(getIntegerList(1, 0));
+        graphInfo.add(getIntegerList(0, 2));
+        graphInfo.add(getIntegerList(2, 1));
+        return graphInfo;
+    }
+
+    public static List<List<Integer>> getDirectedGraphInputs4() {
+        List<List<Integer>> graphInfo = new ArrayList<>(8);
+        graphInfo.add(getIntegerList(5, 6));
+        graphInfo.add(getIntegerList(2, 5));
+        graphInfo.add(getIntegerList(5, 7));
+        graphInfo.add(getIntegerList(1, 2));
+        graphInfo.add(getIntegerList(3, 1));
+        graphInfo.add(getIntegerList(2, 4));
+        graphInfo.add(getIntegerList(6, 7));
+        graphInfo.add(getIntegerList(4, 3));
+        return graphInfo;
+    }
+
+    public static List<List<Integer>> getDirectedGraphInputs5() {
+        List<List<Integer>> graphInfo = new ArrayList<>(14);
+        graphInfo.add(getIntegerList(2, 3));
+        graphInfo.add(getIntegerList(6, 7));
+        graphInfo.add(getIntegerList(5, 1));
+        graphInfo.add(getIntegerList(3, 4));
+        graphInfo.add(getIntegerList(8, 7));
+        graphInfo.add(getIntegerList(3, 7));
+        graphInfo.add(getIntegerList(2, 5));
+        graphInfo.add(getIntegerList(1, 2));
+        graphInfo.add(getIntegerList(5, 6));
+        graphInfo.add(getIntegerList(2, 6));
+        graphInfo.add(getIntegerList(4, 8));
+        graphInfo.add(getIntegerList(4, 3));
+        graphInfo.add(getIntegerList(8, 4));
+        graphInfo.add(getIntegerList(7, 6));
+        return graphInfo;
+    }
+
+    public static List<List<Integer>> getDirectedGraphInputs6() {
+        List<List<Integer>> graphInfo = new ArrayList<>();
+        graphInfo.add(getIntegerList(2, 6));
+        graphInfo.add(getIntegerList(3, 7));
+        graphInfo.add(getIntegerList(3, 8));
+        graphInfo.add(getIntegerList(1, 5));
+        graphInfo.add(getIntegerList(5, 1));
+        graphInfo.add(getIntegerList(9, 9));
+        graphInfo.add(getIntegerList(8, 4));
+        graphInfo.add(getIntegerList(5, 6));
+        graphInfo.add(getIntegerList(1, 2));
+        graphInfo.add(getIntegerList(2, 1));
+        graphInfo.add(getIntegerList(3, 2));
+        graphInfo.add(getIntegerList(6, 7));
+        graphInfo.add(getIntegerList(7, 6));
+        graphInfo.add(getIntegerList(8, 7));
+        graphInfo.add(getIntegerList(4, 3));
+        graphInfo.add(getIntegerList(9, 4));
+        graphInfo.add(getIntegerList(9, 8));
+        return graphInfo;
+    }
+
     private static List<Integer> getIntegerList(Integer... entries) {
-        List<Integer> collection = new ArrayList<>(entries.length);
         return Arrays.asList(entries);
     }
 

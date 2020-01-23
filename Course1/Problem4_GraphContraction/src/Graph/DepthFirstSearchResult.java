@@ -1,9 +1,6 @@
 package Graph;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public final class DepthFirstSearchResult {
@@ -14,19 +11,16 @@ public final class DepthFirstSearchResult {
         this.algorithm = algorithm;
     }
 
-    public List<Integer> getNodeIdsVisited() {
-        Map<Node, Boolean> nodesVisitedMap = algorithm.getNodeVisited();
-        List<Node> nodesVisited = nodesVisitedMap.keySet().stream().filter(node -> algorithm.getNodeVisited().get(node)).collect(Collectors.toList());
-        Map<Node, Integer> orderNodesVisitedMap = algorithm.getOrderVisited();
-        Integer[] tempArr = new Integer[nodesVisited.size()];
-        for (Node node : nodesVisited) {
-            tempArr[orderNodesVisitedMap.get(node)] = node.getId();
-        }
-        return new ArrayList<>(Arrays.asList(tempArr));
+    public List<Integer> getOrderedNodeIds() {
+        return algorithm.getNodesOrdered().stream().map(node -> node.getId()).collect(Collectors.toList());
     }
 
     public Map<Integer, Integer> getLeaderToGraphSize() {
-        return algorithm.getLeaderToGraphSize();
+        Map<Integer, Integer> leaderToGraphSize = new HashMap<>(algorithm.getLeaderToNodesVisited().size());
+        for (Integer leaderNodeId : algorithm.getLeaderToNodesVisited().keySet()) {
+            leaderToGraphSize.put(leaderNodeId, algorithm.getLeaderToNodesVisited().get(leaderNodeId).size());
+        }
+        return leaderToGraphSize;
     }
 
 }

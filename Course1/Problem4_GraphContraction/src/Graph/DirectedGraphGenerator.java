@@ -1,25 +1,32 @@
 package Graph;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-final class DirectedGraphGenerator {
+public final class DirectedGraphGenerator {
 
+    private final Map<Integer, Node> nodeIdToNodeMap = new HashMap<>();
     private final Set<Node> nodes = new HashSet<>();
-    private final List<DirectedEdge> edges = new ArrayList<>();
+    private final List<DirectedEdge> edges;
 
     private DirectedGraphGenerator(final DirectedGraphInputs graphInputs) {
         List<List<Integer>> edgeInfo = graphInputs.getOrganisedInputs();
+        edges = new ArrayList<>(edgeInfo.size());
         for (List<Integer> entry : edgeInfo) {
-            nodes.add(new Node(entry.get(0)));
-            nodes.add(new Node(entry.get(1)));
+            updateNode(entry.get(0));
+            updateNode(entry.get(1));
             createDirectedEdge(entry.get(0), entry.get(1));
         }
     }
 
-    static DirectedGraphGenerator getGeneratorDirected(final DirectedGraphInputs graphInputs) {
+    private void updateNode(int nodeId) {
+        Node node = new Node(nodeId);
+        nodes.add(node);
+        if (!nodeIdToNodeMap.containsKey(nodeId)){
+            nodeIdToNodeMap.put(nodeId, node);
+        }
+    }
+
+    public static DirectedGraphGenerator getGeneratorDirected(final DirectedGraphInputs graphInputs) {
         return new DirectedGraphGenerator(graphInputs);
     }
 
@@ -52,12 +59,16 @@ final class DirectedGraphGenerator {
         Node headNode = getNode(headId);
         DirectedEdge edge = new DirectedEdge(tailNode, headNode);
         edges.add(edge);
-        tailNode.addConnectedEdge(edge);
-        headNode.addConnectedEdge(edge);
+        if (!tailNode.equals(headNode)) {
+            tailNode.addConnectedEdge(edge);
+            headNode.addConnectedEdge(edge);
+        } else {
+            tailNode.addConnectedEdge(edge);
+        }
     }
 
     private Node getNode(final int nodeId) {
-        return nodes.stream().filter(node -> node.getId() == nodeId).findFirst().get();
+        return nodeIdToNodeMap.get(nodeId);
     }
 
 }

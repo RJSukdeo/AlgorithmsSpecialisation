@@ -1,9 +1,10 @@
 package Graph;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-final class StrongConnectedComponentResults {
+public final class StrongConnectedComponentResults {
 
     private final StrongConnectedComponentAlgorithm algorithm;
 
@@ -12,6 +13,8 @@ final class StrongConnectedComponentResults {
     }
 
     public List<Integer> getSccSizes() {
-        return new ArrayList<>(algorithm.getSccLeaderToGraphSize().values());
+        List<Integer> sccSizes = new ArrayList<>(algorithm.getSccLeaderToGraphSize().values());
+        Collections.sort(sccSizes);
+        return sccSizes;
     }
 }
