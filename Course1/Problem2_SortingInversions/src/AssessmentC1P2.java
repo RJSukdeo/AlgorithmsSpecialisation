@@ -8,8 +8,9 @@ import java.util.Scanner;
 
 public class AssessmentC1P2 {
 
+    // Expected output 2407905288
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File(System.getProperty("user.dir") + "/Course1/Problem2_SortingInversions/resources/IntegerArray.txt");
+        File file = new File(System.getProperty("user.dir") + "/resources/IntegerArray.txt");
         Scanner scanner = new Scanner(file);
         List<Integer> elements = new ArrayList<>();
         while (scanner.hasNextInt()) {
