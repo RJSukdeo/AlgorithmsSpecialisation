@@ -14,6 +14,9 @@ import static Graph.DirectedGraphInputs.InputBuilder;
 
 public class AssessmentC2P1 {
 
+    // Worked when running with VM Options : -Xms4096m -Xmx4096m -Xss1024m
+    // Expected output
+    // SCC Sizes: 434821 968 459 313 211
     public static void main(String[] args) throws FileNotFoundException {
         DirectedGraphInputs inputs = getGraphInfo();
         DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(inputs);
@@ -32,7 +35,7 @@ public class AssessmentC2P1 {
     }
 
     private static DirectedGraphInputs getGraphInfo() throws FileNotFoundException {
-        File file = new File(System.getProperty("user.dir") + "/Course2/Problem1_StronglyConnectedComponents/resources/SCC.txt");
+        File file = new File(System.getProperty("user.dir") + "/resources/SCC.txt");
         Scanner scanner = new Scanner(file);
         InputBuilder builder = new InputBuilder();
         while (scanner.hasNextLine()) {
