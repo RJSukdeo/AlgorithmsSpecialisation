@@ -12,7 +12,7 @@ import java.util.Scanner;
 public final class AssessmentC1P3 {
 
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File(System.getProperty("user.dir") + "/Course1/Problem3_QuickSort/resources/QuickSort.txt");
+        File file = new File(System.getProperty("user.dir") + "/resources/QuickSort.txt");
         Scanner scanner = new Scanner(file);
         List<Integer> elementsLeftPivot = new ArrayList<>();
         while (scanner.hasNextInt()) {
