@@ -10,6 +10,8 @@ import java.util.*;
 
 public class AssessmentC1P4 {
 
+    // Expected output
+    // Minimum number of crossing edges: 17
     public static void main(String[] args) throws FileNotFoundException {
         UndirectedGraphGenerator undirectedGraphGenerator = UndirectedGraphGenerator.getGeneratorUndirected(getGraphInfo());
         int smallestCrossingEdges = undirectedGraphGenerator.getNodes(false).size();
@@ -24,7 +26,7 @@ public class AssessmentC1P4 {
     }
 
     private static UndirectedGraphInputs getGraphInfo() throws FileNotFoundException {
-        File file = new File(System.getProperty("user.dir") + "/Course1/Problem4_GraphContraction/resources/Graph.txt");
+        File file = new File(System.getProperty("user.dir") + "/resources/Graph.txt");
         Scanner scanner = new Scanner(file);
         InputBuilder builder = new InputBuilder();
         while (scanner.hasNextLine()) {

@@ -11,6 +11,11 @@ import java.util.Scanner;
 
 public final class AssessmentC1P3 {
 
+    // Expected output
+    // Number of Comparisons (Leftmost): 162085
+    // Number of Comparisons (Rightmost): 164123
+    // Number of Comparisons (Median): 138382
+
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File(System.getProperty("user.dir") + "/resources/QuickSort.txt");
         Scanner scanner = new Scanner(file);
