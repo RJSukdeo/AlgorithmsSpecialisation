@@ -19,6 +19,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Course2/Problem1_StronglyConnectedComponents/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Course2/Problem1_StronglyConnectedComponents/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/Course2/Problem2_DijkstraAlgorithm/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
