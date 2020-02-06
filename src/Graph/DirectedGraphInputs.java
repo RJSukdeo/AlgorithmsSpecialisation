@@ -1,43 +1,39 @@
 package Graph;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class DirectedGraphInputs {
 
-    private final List<List<Integer>> organisedInputs;
+    private final EdgeInputContainer edgeInputContainer;
 
-    private DirectedGraphInputs(List<List<Integer>> structuredInput) {
-        this.organisedInputs = structuredInput;
+    private DirectedGraphInputs(final InputBuilder builder) {
+        this.edgeInputContainer = builder.edgeInputContainer;
     }
 
-    List<List<Integer>> getOrganisedInputs() {
-        return organisedInputs;
+    EdgeInputContainer getEdgeInputContainer() {
+        return edgeInputContainer;
     }
 
     public static class InputBuilder {
 
-        private final List<List<Integer>> organisedInputs;
+        private final EdgeInputContainer edgeInputContainer;
 
         public InputBuilder() {
-            this.organisedInputs = new ArrayList<>();
+            this.edgeInputContainer = new EdgeInputContainer();
         }
 
         public InputBuilder addEntry(Integer tailNodeId, Integer headNodeId) {
-            List<Integer> entries = new ArrayList<>(2);
-            entries.add(tailNodeId);
-            entries.add(headNodeId);
-            organisedInputs.add(entries);
+            edgeInputContainer.addEntry(tailNodeId, headNodeId, 0);
             return this;
         }
 
         public InputBuilder addEntries(List<List<Integer>> entries) {
-            entries.forEach(entry -> organisedInputs.add(entry));
+            entries.forEach(entry -> edgeInputContainer.addEntry(entry.get(0), entry.get(1), 0));
             return this;
         }
 
         public DirectedGraphInputs build() {
-            return new DirectedGraphInputs(organisedInputs);
+            return new DirectedGraphInputs(this);
         }
     }
 }

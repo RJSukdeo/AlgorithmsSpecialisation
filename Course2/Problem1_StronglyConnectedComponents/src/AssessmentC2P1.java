@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 import static Graph.DirectedGraphInputs.InputBuilder;
 
-public class AssessmentC2P1 {
+public final class AssessmentC2P1 {
 
     // Worked when running with VM Options : -Xms4096m -Xmx4096m -Xss1024m
     // Expected output

@@ -4,8 +4,12 @@ import java.util.Objects;
 
 final class UndirectedEdge extends Edge implements Cloneable {
 
+    UndirectedEdge(final Node node1, final Node node2, final IEdgeLength edgeLength) {
+        super(node1, node2, edgeLength);
+    }
+
     UndirectedEdge(final Node node1, final Node node2) {
-        super(node1, node2);
+        this(node1, node2, new NoLength());
     }
 
     @Override

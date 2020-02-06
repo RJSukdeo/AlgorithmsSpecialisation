@@ -4,8 +4,12 @@ import java.util.Objects;
 
 final class DirectedEdge extends Edge implements Cloneable {
 
+    DirectedEdge(final Node tail, final Node head, final IEdgeLength edgeLength) {
+        super(tail, head, edgeLength);
+    }
+
     DirectedEdge(final Node tail, final Node head) {
-        super(tail, head);
+        this(tail, head, new NoLength());
     }
 
     Node getTail() {

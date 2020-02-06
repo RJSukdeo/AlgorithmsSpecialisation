@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class AssessmentC1P4 {
+public final class AssessmentC1P4 {
 
     // Expected output
     // Minimum number of crossing edges: 17

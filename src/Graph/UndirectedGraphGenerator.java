@@ -8,10 +8,13 @@ public final class UndirectedGraphGenerator {
     private final List<UndirectedEdge> edges = new ArrayList<>();
 
     private UndirectedGraphGenerator(final UndirectedGraphInputs graphInputs) {
-        Map<Integer, List<Integer>> nodeInfoMap = graphInputs.getOrganisedInputs();
+        Map<Integer, List<Integer>> nodeInfoMap = graphInputs.getNodeToNodesMap();
         nodeInfoMap.keySet().forEach(nodeId -> nodes.add(new Node(nodeId)));
-        for (int nodeId : nodeInfoMap.keySet()) {
-            createUniqueUndirectedEdges(nodeId, nodeInfoMap.get(nodeId));
+        for (NodeKey nodes : graphInputs.getEdgeInputsContainer().getNodes()) {
+            Iterator<Integer> nodeIds = nodes.getNodeIds().iterator();
+            int nodeId1 = nodeIds.next();
+            int nodeId2 = nodeIds.next();
+            createUniqueUndirectedEdges(nodeId1, nodeId2, graphInputs.getEdgeInputsContainer().getLength(nodeId1, nodeId2));
         }
     }
 
@@ -39,16 +42,14 @@ public final class UndirectedGraphGenerator {
         return edges;
     }
 
-    private void createUniqueUndirectedEdges(final int nodeId, final List<Integer> connectingNodeIds) {
-        for (Integer id : connectingNodeIds) {
-            Node node1 = getNode(nodeId);
-            Node node2 = getNode(id);
-            UndirectedEdge undirectedEdge = new UndirectedEdge(node1, node2);
+    private void createUniqueUndirectedEdges(final int nodeId1, final int nodeId2, final IEdgeLength edgeLength) {
+            Node node1 = getNode(nodeId1);
+            Node node2 = getNode(nodeId2);
+            UndirectedEdge undirectedEdge = new UndirectedEdge(node1, node2, edgeLength);
             if (!edges.contains(undirectedEdge)) {
                 undirectedEdge.updateNodesWithEdge();
                 edges.add(undirectedEdge);
             }
-        }
     }
 
     private Node getNode(final int nodeId) {

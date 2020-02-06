@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class AssessmentC1P2 {
+public final class AssessmentC1P2 {
 
     // Expected output
     // 2407905288

@@ -9,12 +9,12 @@ public final class DirectedGraphGenerator {
     private final List<DirectedEdge> edges;
 
     private DirectedGraphGenerator(final DirectedGraphInputs graphInputs) {
-        List<List<Integer>> edgeInfo = graphInputs.getOrganisedInputs();
-        edges = new ArrayList<>(edgeInfo.size());
-        for (List<Integer> entry : edgeInfo) {
-            updateNode(entry.get(0));
-            updateNode(entry.get(1));
-            createDirectedEdge(entry.get(0), entry.get(1));
+        EdgeInputContainer edgeInfo = graphInputs.getEdgeInputContainer();
+        edges = new ArrayList<>(edgeInfo.getNodes().size());
+        for (NodeKey entry : edgeInfo.getNodes()) {
+            updateNode(entry.getNodeIds().get(0));
+            updateNode(entry.getNodeIds().get(1));
+            createDirectedEdge(entry.getNodeIds().get(0), entry.getNodeIds().get(1), edgeInfo.getLength(entry.getNodeIds().get(0), entry.getNodeIds().get(1)));
         }
     }
 
@@ -54,10 +54,10 @@ public final class DirectedGraphGenerator {
         edges.forEach(edge -> edge.swapHeadTailNodes());
     }
 
-    private void createDirectedEdge(final int tailId, final int headId) {
+    private void createDirectedEdge(final int tailId, final int headId, final IEdgeLength edgeLength) {
         Node tailNode = getNode(tailId);
         Node headNode = getNode(headId);
-        DirectedEdge edge = new DirectedEdge(tailNode, headNode);
+        DirectedEdge edge = new DirectedEdge(tailNode, headNode, edgeLength);
         edges.add(edge);
         if (!tailNode.equals(headNode)) {
             tailNode.addConnectedEdge(edge);
