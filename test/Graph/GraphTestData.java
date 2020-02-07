@@ -48,6 +48,35 @@ final class GraphTestData {
         return graphMap;
     }
 
+    public static UndirectedGraphInputs.InputBuilder getUndirectedGraphInputsWithLength() {
+        UndirectedGraphInputs.InputBuilder builder = new UndirectedGraphInputs.InputBuilder();
+        builder.addEntry(1, 2, 1);
+        builder.addEntry(2, 3, 3);
+        builder.addEntry(3, 4, 1);
+        builder.addEntry(1, 4, 4);
+        builder.addEntry(1, 3, 2);
+        return builder;
+    }
+
+    public static UndirectedGraphInputs.InputBuilder getUndirectedGraphInputsWithLength2() {
+        UndirectedGraphInputs.InputBuilder builder = new UndirectedGraphInputs.InputBuilder();
+        builder.addEntry(0,1, 4);
+        builder.addEntry(1,7, 11);
+        builder.addEntry(0,7, 8);
+        builder.addEntry(1,2, 8);
+        builder.addEntry(2,8, 2);
+        builder.addEntry(7,8, 7);
+        builder.addEntry(7,6, 1);
+        builder.addEntry(8,6, 6);
+        builder.addEntry(6,5, 2);
+        builder.addEntry(2,5, 4);
+        builder.addEntry(2,3, 7);
+        builder.addEntry(3,4, 9);
+        builder.addEntry(5,4, 10);
+        builder.addEntry(3,5, 14);
+        return builder;
+    }
+
     public static List<List<Integer>> getReversedDirectedGraphInputs() {
         List<List<Integer>> graphInfo = new ArrayList<>(11);
         graphInfo.add(getIntegerList(2, 3));

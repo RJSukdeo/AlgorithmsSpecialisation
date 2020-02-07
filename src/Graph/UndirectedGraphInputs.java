@@ -49,9 +49,10 @@ public final class UndirectedGraphInputs {
         public InputBuilder addEntry(final int firstNodeId, final int secondNodeId, final double lengthBetweenNodes) {
             edgeInputs.addEntry(firstNodeId, secondNodeId, lengthBetweenNodes);
             if (!nodeToNodesMap.containsKey(firstNodeId)) {
-                List<Integer> connectingNodeIds = new ArrayList<>();
-                nodeToNodesMap.put(firstNodeId, connectingNodeIds);
-                return this;
+                createNodeToNodesEntry(firstNodeId);
+            }
+            if (!nodeToNodesMap.containsKey(secondNodeId)) {
+                createNodeToNodesEntry(secondNodeId);
             }
             nodeToNodesMap.get(firstNodeId).add(secondNodeId);
             return this;
@@ -60,6 +61,12 @@ public final class UndirectedGraphInputs {
         public UndirectedGraphInputs build() {
             return new UndirectedGraphInputs(this);
         }
+
+        private void createNodeToNodesEntry(final int nodeId) {
+            List<Integer> connectingNodeIds = new ArrayList<>();
+            nodeToNodesMap.put(nodeId, connectingNodeIds);
+        }
+
     }
 
 }
