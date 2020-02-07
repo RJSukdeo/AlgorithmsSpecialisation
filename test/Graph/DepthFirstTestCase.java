@@ -13,7 +13,7 @@ public final class DepthFirstTestCase {
 
     @Test
     public void testRunSingleStartedNode() {
-        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(new InputBuilder().addEntries(GraphTestData.getReversedDirectedGraphInputs()).build());
+        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGenerator(new InputBuilder().addEntries(GraphTestData.getReversedDirectedGraphInputs()).build());
         DepthFirstSearchAlgorithm algorithm = new DepthFirstSearchAlgorithm(graphGenerator);
         DepthFirstSearchResult result = algorithm.run(9);
 
@@ -77,7 +77,7 @@ public final class DepthFirstTestCase {
 
     @Test
     public void testRunAllRandomNodes() {
-        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(new InputBuilder().addEntries(GraphTestData.getReversedDirectedGraphInputs()).build());
+        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGenerator(new InputBuilder().addEntries(GraphTestData.getReversedDirectedGraphInputs()).build());
         DepthFirstSearchResult result = new DepthFirstSearchAlgorithm(graphGenerator).run();
 
         assertEquals(9, result.getOrderedNodeIds().size());
@@ -85,7 +85,7 @@ public final class DepthFirstTestCase {
 
     @Test
     public void testRunCertainNodes() {
-        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(new InputBuilder().addEntries(GraphTestData.getReversedDirectedGraphInputs()).build());
+        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGenerator(new InputBuilder().addEntries(GraphTestData.getReversedDirectedGraphInputs()).build());
         List<Integer> nodeIds = new ArrayList<>(9);
         nodeIds.add(9);
         nodeIds.add(6);

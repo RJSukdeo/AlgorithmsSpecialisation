@@ -12,7 +12,7 @@ public final class DirectedGraphGeneratorTestCase {
 
     @Test
     public void testGetGeneratorDirected() {
-        DirectedGraphGenerator undirectedGraphGenerator = DirectedGraphGenerator.getGeneratorDirected(new DirectedGraphInputs.InputBuilder().addEntries(GraphTestData.getReversedDirectedGraphInputs()).build());
+        DirectedGraphGenerator undirectedGraphGenerator = DirectedGraphGenerator.getGenerator(new DirectedGraphInputs.InputBuilder().addEntries(GraphTestData.getReversedDirectedGraphInputs()).build());
         Set<Node> nodes = undirectedGraphGenerator.getNodes(false);
         Collection<DirectedEdge> edges = undirectedGraphGenerator.getEdges(false);
 

@@ -26,7 +26,7 @@ public final class DirectedGraphGenerator {
         }
     }
 
-    public static DirectedGraphGenerator getGeneratorDirected(final DirectedGraphInputs graphInputs) {
+    public static DirectedGraphGenerator getGenerator(final DirectedGraphInputs graphInputs) {
         return new DirectedGraphGenerator(graphInputs);
     }
 

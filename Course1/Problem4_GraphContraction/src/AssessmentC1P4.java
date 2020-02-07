@@ -13,7 +13,7 @@ public final class AssessmentC1P4 {
     // Expected output
     // Minimum number of crossing edges: 17
     public static void main(String[] args) throws FileNotFoundException {
-        UndirectedGraphGenerator undirectedGraphGenerator = UndirectedGraphGenerator.getGeneratorUndirected(getGraphInfo());
+        UndirectedGraphGenerator undirectedGraphGenerator = UndirectedGraphGenerator.getGenerator(getGraphInfo());
         int smallestCrossingEdges = undirectedGraphGenerator.getNodes(false).size();
         for (int i = 0; i < Math.pow(undirectedGraphGenerator.getNodes(false).size(), 2); i++) {
             ContractionAlgorithm contractionAlgorithm = new ContractionAlgorithm(undirectedGraphGenerator);

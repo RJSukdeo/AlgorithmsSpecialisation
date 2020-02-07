@@ -10,7 +10,7 @@ public final class StrongConnectedComponentTestCase {
     @Test
     public void testRunGraph1() {
         DirectedGraphInputs inputs = new InputBuilder().addEntries(GraphTestData.getDirectedGraphInputs1()).build();
-        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(inputs);
+        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGenerator(inputs);
         StrongConnectedComponentAlgorithm algorithm = StrongConnectedComponentAlgorithm.getInstance(graphGenerator);
         StrongConnectedComponentResults results = algorithm.run();
 
@@ -24,7 +24,7 @@ public final class StrongConnectedComponentTestCase {
     public void testRunGraph2() {
         InputBuilder inputBuilder = new InputBuilder();
         inputBuilder.addEntries(GraphTestData.getDirectedGraphInputs2());
-        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(inputBuilder.build());
+        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGenerator(inputBuilder.build());
         StrongConnectedComponentAlgorithm algorithm = StrongConnectedComponentAlgorithm.getInstance(graphGenerator);
         StrongConnectedComponentResults results = algorithm.run();
 
@@ -38,7 +38,7 @@ public final class StrongConnectedComponentTestCase {
     public void testRunGraph3() {
         InputBuilder inputBuilder = new InputBuilder();
         inputBuilder.addEntries(GraphTestData.getDirectedGraphInputs3());
-        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(inputBuilder.build());
+        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGenerator(inputBuilder.build());
         StrongConnectedComponentAlgorithm algorithm = StrongConnectedComponentAlgorithm.getInstance(graphGenerator);
         StrongConnectedComponentResults results = algorithm.run();
 
@@ -52,7 +52,7 @@ public final class StrongConnectedComponentTestCase {
     public void testRunGraph4() {
         InputBuilder inputBuilder = new InputBuilder();
         inputBuilder.addEntries(GraphTestData.getDirectedGraphInputs4());
-        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(inputBuilder.build());
+        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGenerator(inputBuilder.build());
         StrongConnectedComponentAlgorithm algorithm = StrongConnectedComponentAlgorithm.getInstance(graphGenerator);
         StrongConnectedComponentResults results = algorithm.run();
 
@@ -67,7 +67,7 @@ public final class StrongConnectedComponentTestCase {
     public void testRunGraph5() {
         InputBuilder inputBuilder = new InputBuilder();
         inputBuilder.addEntries(GraphTestData.getDirectedGraphInputs5());
-        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(inputBuilder.build());
+        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGenerator(inputBuilder.build());
         StrongConnectedComponentAlgorithm algorithm = StrongConnectedComponentAlgorithm.getInstance(graphGenerator);
         StrongConnectedComponentResults results = algorithm.run();
 
@@ -81,7 +81,7 @@ public final class StrongConnectedComponentTestCase {
     public void testRunGraph6() {
         InputBuilder inputBuilder = new InputBuilder();
         inputBuilder.addEntries(GraphTestData.getDirectedGraphInputs6());
-        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(inputBuilder.build());
+        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGenerator(inputBuilder.build());
         StrongConnectedComponentAlgorithm algorithm = StrongConnectedComponentAlgorithm.getInstance(graphGenerator);
         StrongConnectedComponentResults results = algorithm.run();
 

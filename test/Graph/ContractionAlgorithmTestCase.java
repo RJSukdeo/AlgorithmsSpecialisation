@@ -11,7 +11,7 @@ public final class ContractionAlgorithmTestCase {
 
     @Test
     public void testRunContractionAlgorithm() {
-        UndirectedGraphGenerator undirectedGraphGenerator = UndirectedGraphGenerator.getGeneratorUndirected(new InputBuilder().addEntries(GraphTestData.getUndirectedGraphInputs()).build());
+        UndirectedGraphGenerator undirectedGraphGenerator = UndirectedGraphGenerator.getGenerator(new InputBuilder().addEntries(GraphTestData.getUndirectedGraphInputs()).build());
         ContractionAlgorithm contractionAlgorithm = new ContractionAlgorithm(undirectedGraphGenerator, new Random(30));
         ContractionResult results = contractionAlgorithm.run();
         assertEquals(2, results.getCrossingEdges());

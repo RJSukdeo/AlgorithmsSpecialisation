@@ -11,7 +11,7 @@ public final class UndirectedGraphGeneratorTestCase {
 
     @Test
     public void testGetGeneratorUndirected() {
-        UndirectedGraphGenerator undirectedGraphGenerator = UndirectedGraphGenerator.getGeneratorUndirected(new InputBuilder().addEntries(GraphTestData.getUndirectedGraphInputs()).build());
+        UndirectedGraphGenerator undirectedGraphGenerator = UndirectedGraphGenerator.getGenerator(new InputBuilder().addEntries(GraphTestData.getUndirectedGraphInputs()).build());
         Set<Node> nodes = undirectedGraphGenerator.getNodes(false);
         Collection<UndirectedEdge> undirectedEdges = undirectedGraphGenerator.getEdges(false);
 
@@ -31,7 +31,7 @@ public final class UndirectedGraphGeneratorTestCase {
     @Test
     public void testGetGeneratorUndirectedWithLengthZero() {
         InputBuilder builder = new InputBuilder();
-        UndirectedGraphGenerator graphGenerator = UndirectedGraphGenerator.getGeneratorUndirected(builder.addEntries(GraphTestData.getUndirectedGraphInputs()).build());
+        UndirectedGraphGenerator graphGenerator = UndirectedGraphGenerator.getGenerator(builder.addEntries(GraphTestData.getUndirectedGraphInputs()).build());
         Set<Node> nodes = graphGenerator.getNodes(false);
         Collection<UndirectedEdge> undirectedEdges = graphGenerator.getEdges(false);
 
@@ -59,7 +59,7 @@ public final class UndirectedGraphGeneratorTestCase {
                 builder.addEntry(nodeId, secondNodeId, 2);
             }
         }
-        UndirectedGraphGenerator graphGenerator = UndirectedGraphGenerator.getGeneratorUndirected(builder.build());
+        UndirectedGraphGenerator graphGenerator = UndirectedGraphGenerator.getGenerator(builder.build());
         Set<Node> nodes = graphGenerator.getNodes(false);
         Collection<UndirectedEdge> edges = graphGenerator.getEdges(false);
 

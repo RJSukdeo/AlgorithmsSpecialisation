@@ -18,7 +18,7 @@ public final class UndirectedGraphGenerator {
         }
     }
 
-    public static UndirectedGraphGenerator getGeneratorUndirected(final UndirectedGraphInputs graphInputs) {
+    public static UndirectedGraphGenerator getGenerator(final UndirectedGraphInputs graphInputs) {
         return new UndirectedGraphGenerator(graphInputs);
     }
 

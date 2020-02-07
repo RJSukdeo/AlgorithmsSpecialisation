@@ -19,7 +19,7 @@ public final class AssessmentC2P1 {
     // SCC Sizes: 434821 968 459 313 211
     public static void main(String[] args) throws FileNotFoundException {
         DirectedGraphInputs inputs = getGraphInfo();
-        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGeneratorDirected(inputs);
+        DirectedGraphGenerator graphGenerator = DirectedGraphGenerator.getGenerator(inputs);
         StrongConnectedComponentAlgorithm algorithm = StrongConnectedComponentAlgorithm.getInstance(graphGenerator);
         StrongConnectedComponentResults results = algorithm.run();
         List<Integer> sccSizes = results.getSccSizes();

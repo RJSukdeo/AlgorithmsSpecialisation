@@ -8,7 +8,7 @@ public class DijkstraAlgorithmTestCase {
 
     @Test
     public void testRunAlgorithm() {
-        UndirectedGraphGenerator graphGenerator = UndirectedGraphGenerator.getGeneratorUndirected(GraphTestData.getUndirectedGraphInputsWithLength().build());
+        UndirectedGraphGenerator graphGenerator = UndirectedGraphGenerator.getGenerator(GraphTestData.getUndirectedGraphInputsWithLength().build());
         DijkstraAlgorithm algorithm = new DijkstraAlgorithm(graphGenerator);
         DijkstraAlgorithmResults results = algorithm.run(2);
 
@@ -20,7 +20,7 @@ public class DijkstraAlgorithmTestCase {
 
     @Test
     public void testRunAlgorithm2() {
-        UndirectedGraphGenerator graphGenerator = UndirectedGraphGenerator.getGeneratorUndirected(GraphTestData.getUndirectedGraphInputsWithLength2().build());
+        UndirectedGraphGenerator graphGenerator = UndirectedGraphGenerator.getGenerator(GraphTestData.getUndirectedGraphInputsWithLength2().build());
         DijkstraAlgorithm algorithm = new DijkstraAlgorithm(graphGenerator);
         DijkstraAlgorithmResults results = algorithm.run(0);
 
