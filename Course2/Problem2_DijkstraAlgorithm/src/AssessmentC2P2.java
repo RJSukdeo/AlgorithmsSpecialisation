@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class AssessmentC2P2 {
+public final class AssessmentC2P2 {
 
     public static void main(String[] args) throws FileNotFoundException {
         UndirectedGraphInputs graphInputs = getGraphInfo();
