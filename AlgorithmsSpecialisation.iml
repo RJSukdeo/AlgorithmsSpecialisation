@@ -21,6 +21,7 @@
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/Course2/Problem2_DijkstraAlgorithm/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Course2/Problem3_MedianMaintenance/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Course2/Problem4_TwoSumAlgorithm/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
