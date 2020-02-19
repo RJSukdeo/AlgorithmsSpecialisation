@@ -1,39 +1,29 @@
 Stanford Algorithm Specialisation - Ryan Sukdeo
 
-This repository contains the code necessary to complete the programming assessments for the Stanford Algorithm Specialisation on Coursera.
+Contents
+1) Introduction
+2) Software Requirements
+3) How to run the application
 
-You can use the [editor on GitHub](https://github.com/RJSukdeo/AlgorithmsSpecialisation/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+1) Introduction
+This repository contains the codebase I used to complete the programming assessments for the Stanford Algorithm Specialisation on Coursera. The code is written in Java and is built into an executable JAR via the Gradle build tool.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+2) Software Requirements
+In this section we will cover the software required to build the codebase:
+  - JDK (Java Development Kit) 11.0.4
+  - Gradle 6.1.1
 
-### Markdown
+3) How to run the application
+There are two ways of interacting with this project. Either by cloning the repository and building the JAR on your machine or by running the already built JAR available in the repository.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+In order to build and run the application, follow the steps below:
+  - Clone the repository onto your local hard drive,
+  - Using the Gradle wrapper run the assemble task (in Linux: ./gradlew assemble),
+  - The JAR will be located in the AlgorithmsSpecialisation/build/libs folder,
+  - In a terminal run the command "java -Xms4096m -Xmx4096m -Xss1024m -jar AlgorithmSpecialisation.jar".
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/RJSukdeo/AlgorithmsSpecialisation/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+In order to run the application, follow the steps below:
+  - Navigate to the folder /build/libs/ located on this repository
+  - Download the file AlgorithmSpecialisation.jar
+  - In a terminal run the command "java -Xms4096m -Xmx4096m -Xss1024m -jar AlgorithmSpecialisation.jar".
+  
