@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AlgorithmsSpecialisation.iml" filepath="$PROJECT_DIR$/AlgorithmsSpecialisation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AlgorithmSpecialisation.iml" filepath="$PROJECT_DIR$/.idea/modules/AlgorithmSpecialisation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AlgorithmSpecialisation.main.iml" filepath="$PROJECT_DIR$/.idea/modules/AlgorithmSpecialisation.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AlgorithmSpecialisation.test.iml" filepath="$PROJECT_DIR$/.idea/modules/AlgorithmSpecialisation.test.iml" />
     </modules>
   </component>
 </project>
