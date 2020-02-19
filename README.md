@@ -30,7 +30,7 @@ In order to build and run the application, follow the steps below:
   - In a terminal run the command "java -Xms4096m -Xmx4096m -Xss1024m -jar AlgorithmSpecialisation.jar".
 
 In order to run the application, follow the steps below:
-  - Navigate to the folder /build/libs/ located on this repository
-  - Download the file AlgorithmSpecialisation.jar
+  - Navigate to the folder /build/libs/ located on this repository,
+  - Download the file AlgorithmSpecialisation.jar,
   - In a terminal run the command "java -Xms4096m -Xmx4096m -Xss1024m -jar AlgorithmSpecialisation.jar".
   
