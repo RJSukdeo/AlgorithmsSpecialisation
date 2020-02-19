@@ -1,4 +1,6 @@
-## Welcome to GitHub Pages
+Stanford Algorithm Specialisation - Ryan Sukdeo
+
+This repository contains the code necessary to complete the programming assessments for the Stanford Algorithm Specialisation on Coursera.
 
 You can use the [editor on GitHub](https://github.com/RJSukdeo/AlgorithmsSpecialisation/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
