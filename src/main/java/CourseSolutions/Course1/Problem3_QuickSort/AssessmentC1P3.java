@@ -1,24 +1,27 @@
+package CourseSolutions.Course1.Problem3_QuickSort;
+
+import CourseSolutions.ICourseSolution;
 import Pivot.LeftMostPivotSelector;
 import Pivot.MedianPivotSelector;
 import Pivot.RightMostPivotSelector;
 import QuickSort.QuickSort;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public final class AssessmentC1P3 {
+// Expected output
+// Number of Comparisons (Leftmost): 162085
+// Number of Comparisons (Rightmost): 164123
+// Number of Comparisons (Median): 138382
 
-    // Expected output
-    // Number of Comparisons (Leftmost): 162085
-    // Number of Comparisons (Rightmost): 164123
-    // Number of Comparisons (Median): 138382
+public final class AssessmentC1P3 implements ICourseSolution {
 
-    public static void main(String[] args) throws FileNotFoundException {
-        File file = new File(System.getProperty("user.dir") + "/resources/QuickSort.txt");
-        Scanner scanner = new Scanner(file);
+    @Override
+    public void run() {
+        InputStream inputStream = ClassLoader.getSystemResourceAsStream("QuickSort.txt");
+        Scanner scanner = new Scanner(inputStream);
         List<Integer> elementsLeftPivot = new ArrayList<>();
         while (scanner.hasNextInt()) {
             elementsLeftPivot.add(scanner.nextInt());
@@ -34,5 +37,20 @@ public final class AssessmentC1P3 {
 
         sort = new QuickSort(elementsMedianPivot, new MedianPivotSelector());
         System.out.println("Number of Comparisons (Median): " + sort.getNumberOfComparisons());
+    }
+
+    @Override
+    public String getProblemDescription() {
+        return "Implementation of Quick Sort algorithm.";
+    }
+
+    @Override
+    public short getCourseNumber() {
+        return 1;
+    }
+
+    @Override
+    public short getProblemNumber() {
+        return 3;
     }
 }
