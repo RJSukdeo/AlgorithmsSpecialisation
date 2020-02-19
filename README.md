@@ -6,14 +6,17 @@ Contents
 3) How to run the application
 
 1) Introduction
+
 This repository contains the codebase I used to complete the programming assessments for the Stanford Algorithm Specialisation on Coursera. The code is written in Java and is built into an executable JAR via the Gradle build tool.
 
 2) Software Requirements
+
 In this section we will cover the software required to build the codebase:
   - JDK (Java Development Kit) 11.0.4
   - Gradle 6.1.1
 
 3) How to run the application
+
 There are two ways of interacting with this project. Either by cloning the repository and building the JAR on your machine or by running the already built JAR available in the repository.
 
 In order to build and run the application, follow the steps below:
