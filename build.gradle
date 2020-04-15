@@ -8,6 +8,7 @@
 
 plugins {
     id 'java'
+    id 'application'
 }
 
 dependencies {
@@ -24,3 +25,10 @@ jar {
     }
 }
 
+application {
+    mainClassName = 'CourseSolutions.SolutionManager'
+}
+
+run {
+    standardInput = System.in
+}
