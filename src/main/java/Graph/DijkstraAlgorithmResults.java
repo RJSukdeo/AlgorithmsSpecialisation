@@ -1,6 +1,6 @@
 package Graph;
 
-public class DijkstraAlgorithmResults {
+public final class DijkstraAlgorithmResults {
 
     private final DijkstraAlgorithm algorithm;
 

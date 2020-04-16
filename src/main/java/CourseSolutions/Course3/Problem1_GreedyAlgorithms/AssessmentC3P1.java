@@ -1,6 +1,10 @@
 package CourseSolutions.Course3.Problem1_GreedyAlgorithms;
 
 import CourseSolutions.ICourseSolution;
+import Graph.PrimMinimumSpanningTreeAlgorithm;
+import Graph.PrimMinimumSpanningTreeAlgorithmResults;
+import Graph.UndirectedGraphGenerator;
+import Graph.UndirectedGraphInputs;
 import GreedyScheduling.*;
 
 import java.io.FileNotFoundException;
@@ -16,6 +20,7 @@ public final class AssessmentC3P1 implements ICourseSolution {
         SchedulingData schedulingData = new SchedulingData();
         runFirstAssessment(schedulingData);
         runSecondAssessment(schedulingData);
+        runThirdAssessment(new GraphData());
     }
 
     private void runFirstAssessment(final SchedulingData schedulingData) {
@@ -28,6 +33,11 @@ public final class AssessmentC3P1 implements ICourseSolution {
         SchedulingAlgorithmResults results = new SchedulingAlgorithm(schedulingData.getEntries()).run(new DivisionComparator());
         DataItem[] orderedEntries = results.getOrderdEntries();
         System.out.println("Weighted sum of completion time (Division Comparator):" + getWeightedCompletionSum(orderedEntries));
+    }
+
+    private void runThirdAssessment(final GraphData graphData) {
+        PrimMinimumSpanningTreeAlgorithmResults results = new PrimMinimumSpanningTreeAlgorithm(UndirectedGraphGenerator.getGenerator(graphData.getUndirectedGraphInputs())).run();
+        System.out.println("Sum of paths of Minimum Spanning Tree: " + results.getTreeLength());
     }
 
     private long getWeightedCompletionSum(final DataItem[] orderedEntries) {
@@ -55,7 +65,7 @@ public final class AssessmentC3P1 implements ICourseSolution {
         return 1;
     }
 
-    private final class SchedulingData {
+    private static final class SchedulingData {
         private final int jobNum;
         private final List<DataItem> entries;
 
@@ -76,6 +86,30 @@ public final class AssessmentC3P1 implements ICourseSolution {
 
         public List<DataItem> getEntries() {
             return entries;
+        }
+    }
+
+    private static final class GraphData {
+        private final int numEdges;
+        private final int numVertices;
+        private final UndirectedGraphInputs undirectedGraphInputs;
+
+        public GraphData() {
+            InputStream inputStream = ClassLoader.getSystemResourceAsStream("edges.txt");
+            Scanner scanner = new Scanner(inputStream);
+            String[] numElements = scanner.nextLine().split(" ");
+            numVertices = Integer.parseInt(numElements[0]);
+            numEdges = Integer.parseInt(numElements[1]);
+            UndirectedGraphInputs.InputBuilder builder = new UndirectedGraphInputs.InputBuilder();
+            while(scanner.hasNextLine()) {
+                String[] edgeInfo = scanner.nextLine().split(" ");
+                builder.addEntry(Integer.parseInt(edgeInfo[0]), Integer.parseInt(edgeInfo[1]), Double.parseDouble(edgeInfo[2]));
+            }
+            undirectedGraphInputs = builder.build();
+        }
+
+        public UndirectedGraphInputs getUndirectedGraphInputs() {
+            return undirectedGraphInputs;
         }
     }
 

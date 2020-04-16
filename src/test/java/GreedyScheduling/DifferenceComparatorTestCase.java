@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class DifferenceComparatorTestCase {
+public final class DifferenceComparatorTestCase {
 
     @Test
     public void testDifferenceComparator() {

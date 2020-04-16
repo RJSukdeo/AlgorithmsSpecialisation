@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class SchedulingAlgorithmTestCase {
+public final class SchedulingAlgorithmTestCase {
 
     @Test
     public void testRun() {

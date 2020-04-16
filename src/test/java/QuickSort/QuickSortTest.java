@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class QuickSortTest {
+public final class QuickSortTest {
 
     @Test
     public void testQuickSortSorting() {

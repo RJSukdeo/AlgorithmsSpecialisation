@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class DijkstraAlgorithmTestCase {
+public final class DijkstraAlgorithmTestCase {
 
     @Test
     public void testRunAlgorithm() {

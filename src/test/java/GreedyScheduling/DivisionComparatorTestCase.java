@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class DivisionComparatorTestCase {
+public final class DivisionComparatorTestCase {
 
     @Test
     public void testDivisionComparator() {

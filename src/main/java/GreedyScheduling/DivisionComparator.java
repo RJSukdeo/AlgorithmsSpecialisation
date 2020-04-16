@@ -2,7 +2,7 @@ package GreedyScheduling;
 
 import java.util.Comparator;
 
-public class DivisionComparator implements Comparator<DataItem> {
+public final class DivisionComparator implements Comparator<DataItem> {
 
     @Override
     public int compare(DataItem t0, DataItem t1) {
