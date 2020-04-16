@@ -13,19 +13,19 @@ public final class AssessmentC3P1 implements ICourseSolution {
 
     @Override
     public void run() throws FileNotFoundException {
-        Data data = new Data();
-        runFirstAssessment(data);
-        runSecondAssessment(data);
+        SchedulingData schedulingData = new SchedulingData();
+        runFirstAssessment(schedulingData);
+        runSecondAssessment(schedulingData);
     }
 
-    private void runFirstAssessment(final Data data) {
-        SchedulingAlgorithmResults results = new SchedulingAlgorithm(data.getEntries()).run(new DifferenceComparator());
+    private void runFirstAssessment(final SchedulingData schedulingData) {
+        SchedulingAlgorithmResults results = new SchedulingAlgorithm(schedulingData.getEntries()).run(new DifferenceComparator());
         DataItem[] orderedEntries = results.getOrderdEntries();
         System.out.println("Weighted sum of completion time (Difference Comparator):" + getWeightedCompletionSum(orderedEntries));
     }
 
-    private void runSecondAssessment(final Data data) {
-        SchedulingAlgorithmResults results = new SchedulingAlgorithm(data.getEntries()).run(new DivisionComparator());
+    private void runSecondAssessment(final SchedulingData schedulingData) {
+        SchedulingAlgorithmResults results = new SchedulingAlgorithm(schedulingData.getEntries()).run(new DivisionComparator());
         DataItem[] orderedEntries = results.getOrderdEntries();
         System.out.println("Weighted sum of completion time (Division Comparator):" + getWeightedCompletionSum(orderedEntries));
     }
@@ -55,11 +55,11 @@ public final class AssessmentC3P1 implements ICourseSolution {
         return 1;
     }
 
-    private final class Data {
+    private final class SchedulingData {
         private final int jobNum;
         private final List<DataItem> entries;
 
-        Data() {
+        SchedulingData() {
             InputStream inputStream = ClassLoader.getSystemResourceAsStream("jobs.txt");
             Scanner scanner = new Scanner(inputStream);
             jobNum = Integer.valueOf(scanner.nextLine());
