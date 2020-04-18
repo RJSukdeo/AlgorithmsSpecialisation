@@ -3,7 +3,7 @@ package DataStructures;
 // This class was taken from Princeton notes regarding Union-find implementations.
 // Union: O(logN) and Find: O(logN)
 
-public class QuickUnion {
+public final class QuickUnion {
 
     private int[] id;
     private int[] size;
