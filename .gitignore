@@ -6,4 +6,5 @@
 /build/resources/
 /build/tmp/
 /out/
+/.gradle/
 /build/test-results/test/
