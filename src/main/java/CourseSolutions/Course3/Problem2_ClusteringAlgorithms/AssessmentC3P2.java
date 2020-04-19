@@ -18,8 +18,8 @@ public class AssessmentC3P2 implements ICourseSolution {
     }
 
     private void runAssessmentOne() {
-        ClusteringAlgorithmResults results = new ClusteringAlgorithm(getGraphInputsProblemOne(), 1, 499).run(4);
-        System.out.println("Max spacing between clusters: " + results.getMaxDistanceBetweenClusters());
+        ClusteringAlgorithmResults results = new ClusteringAlgorithm(getGraphInputsProblemOne()).run(4);
+        System.out.println("Max spacing between clusters: " + results.getMinDistanceBetweenClusters());
     }
 
     private void runAssessmentTwo() {
@@ -30,9 +30,10 @@ public class AssessmentC3P2 implements ICourseSolution {
         UndirectedGraphInputs.InputBuilder builder = new UndirectedGraphInputs.InputBuilder();
         InputStream inputStream = ClassLoader.getSystemResourceAsStream("clustering1.txt");
         Scanner scanner = new Scanner(inputStream);
+        scanner.nextLine();
         while(scanner.hasNextLine()) {
             String[] entries = scanner.nextLine().split(" ");
-            builder.addEntry(Integer.parseInt(entries[0]), Integer.parseInt(entries[1]), Integer.parseInt(entries[2]));
+            builder.addEntry(Integer.parseInt(entries[0]) - 1, Integer.parseInt(entries[1]) - 1, Integer.parseInt(entries[2]));
         }
         return builder.build();
     }

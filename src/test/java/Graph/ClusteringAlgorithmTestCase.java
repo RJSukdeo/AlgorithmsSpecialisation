@@ -8,9 +8,9 @@ public class ClusteringAlgorithmTestCase {
 
     @Test
     public void testExample() {
-        ClusteringAlgorithm algorithm = new ClusteringAlgorithm(getGraphInput(), 0, 11);
+        ClusteringAlgorithm algorithm = new ClusteringAlgorithm(getGraphInput());
         ClusteringAlgorithmResults results = algorithm.run(3);
-        assertEquals(results.getMaxDistanceBetweenClusters(), 14.0, 10e-1);
+        assertEquals(results.getMinDistanceBetweenClusters(), 13.0, 10e-1);
         assertEquals(results.getTotalDistanceBetweenClusters(), 27.0, 10e-1);
     }
 

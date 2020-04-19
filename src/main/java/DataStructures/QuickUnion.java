@@ -8,11 +8,10 @@ public final class QuickUnion {
     private int[] id;
     private int[] size;
 
-    public QuickUnion(int startId, int endId) {
-        int numOfElements = endId - startId + 1;
-        id = new int[numOfElements];
-        size = new int[numOfElements];
-        for (int i = startId; i <= endId; i++) {
+    public QuickUnion(int numElements) {
+        id = new int[numElements];
+        size = new int[numElements];
+        for (int i = 0; i < numElements; i++) {
             id[i] = i;
             size[i] = 1;
         }

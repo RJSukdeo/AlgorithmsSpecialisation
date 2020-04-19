@@ -9,7 +9,7 @@ public class QuickUnionTestCase {
 
     @Test
     public void testExample() {
-        QuickUnion union = new QuickUnion(0, 9);
+        QuickUnion union = new QuickUnion(10);
         union.unite(6, 9);
         union.unite(6, 5);
         union.unite(9, 6);
