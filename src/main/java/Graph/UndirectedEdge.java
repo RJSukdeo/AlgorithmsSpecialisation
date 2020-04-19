@@ -22,6 +22,9 @@ final class UndirectedEdge extends Edge implements Cloneable {
 
     @Override
     public Object clone() {
+        if (this.getLength() != 0.0) {
+            return new UndirectedEdge((Node) getEncompassingNodes().get(0).clone(), (Node) getEncompassingNodes().get(1).clone(), new Length(this.getLength()));
+        }
         return new UndirectedEdge((Node) getEncompassingNodes().get(0).clone(), (Node) getEncompassingNodes().get(1).clone());
     }
 

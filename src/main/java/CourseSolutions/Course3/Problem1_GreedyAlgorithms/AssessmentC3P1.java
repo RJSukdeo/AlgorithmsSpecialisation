@@ -5,7 +5,7 @@ import Graph.PrimMinimumSpanningTreeAlgorithm;
 import Graph.PrimMinimumSpanningTreeAlgorithmResults;
 import Graph.UndirectedGraphGenerator;
 import Graph.UndirectedGraphInputs;
-import GreedyScheduling.*;
+import GreedyAlgorithms.*;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;

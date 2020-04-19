@@ -1,6 +1,6 @@
 package DataStructures;
 
-// This class was taken from Princeton notes regarding Union-find implementations.
+// This class was influenced by the Princeton notes regarding Union-Find implementations.
 // Union: O(logN) and Find: O(logN)
 
 public final class QuickUnion {
@@ -8,10 +8,11 @@ public final class QuickUnion {
     private int[] id;
     private int[] size;
 
-    public QuickUnion(int N) {
-        id = new int[N];
-        size = new int[N];
-        for (int i = 0; i < N; i++) {
+    public QuickUnion(int startId, int endId) {
+        int numOfElements = endId - startId + 1;
+        id = new int[numOfElements];
+        size = new int[numOfElements];
+        for (int i = startId; i <= endId; i++) {
             id[i] = i;
             size[i] = 1;
         }
