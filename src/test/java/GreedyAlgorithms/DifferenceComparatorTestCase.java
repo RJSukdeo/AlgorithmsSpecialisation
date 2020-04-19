@@ -1,4 +1,4 @@
-package GreedyScheduling;
+package GreedyAlgorithms;
 
 import org.junit.Test;
 
@@ -7,20 +7,20 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public final class DivisionComparatorTestCase {
+public final class DifferenceComparatorTestCase {
 
     @Test
-    public void testDivisionComparator() {
+    public void testDifferenceComparator() {
         SchedulingAlgorithm algorithm = new SchedulingAlgorithm(getData());
-        SchedulingAlgorithmResults results = algorithm.run(new DivisionComparator());
+        SchedulingAlgorithmResults results = algorithm.run(new DifferenceComparator());
         DataItem[] orderedEntries = results.getOrderdEntries();
-        assertEquals(new DataItem(7, 3), orderedEntries[0]);
-        assertEquals(new DataItem(14, 8), orderedEntries[1]);
+        assertEquals(new DataItem(14, 8), orderedEntries[0]);
+        assertEquals(new DataItem(7, 3), orderedEntries[1]);
         assertEquals(new DataItem(6, 4), orderedEntries[2]);
-        assertEquals(new DataItem(8, 20), orderedEntries[3]);
-        assertEquals(new DataItem(2, 5), orderedEntries[4]);
-        assertEquals(new DataItem(3, 8), orderedEntries[5]);
-        assertEquals(new DataItem(1, 11), orderedEntries[6]);
+        assertEquals(new DataItem(2, 5), orderedEntries[3]);
+        assertEquals(new DataItem(3, 8), orderedEntries[4]);
+        assertEquals(new DataItem(1, 11), orderedEntries[5]);
+        assertEquals(new DataItem(8, 20), orderedEntries[6]);
     }
 
     private List<DataItem> getData() {
@@ -34,6 +34,5 @@ public final class DivisionComparatorTestCase {
         data.add(new DataItem(3, 8));
         return data;
     }
-
 
 }

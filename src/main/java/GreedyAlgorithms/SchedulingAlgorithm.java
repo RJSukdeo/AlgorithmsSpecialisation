@@ -1,4 +1,4 @@
-package GreedyScheduling;
+package GreedyAlgorithms;
 
 import java.util.Comparator;
 import java.util.List;

@@ -5,6 +5,9 @@
 /build/generated/
 /build/resources/
 /build/tmp/
+/build/reports
+/build/distributions
+/build/scripts
 /out/
 /.gradle/
 /build/test-results/test/
