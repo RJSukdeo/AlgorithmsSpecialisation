@@ -13,7 +13,7 @@ public final class AssessmentC3P2 implements ICourseSolution {
 
     @Override
     public void run() throws FileNotFoundException {
-        System.out.println();
+        System.out.println("This assessment may take hours to run!!! Very large datasets.");
         runAssessmentOne();
         runAssessmentTwo();
     }
