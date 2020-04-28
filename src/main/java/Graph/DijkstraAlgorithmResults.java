@@ -4,7 +4,7 @@ public final class DijkstraAlgorithmResults {
 
     private final DijkstraAlgorithm algorithm;
 
-    public DijkstraAlgorithmResults(DijkstraAlgorithm algorithm) {
+    DijkstraAlgorithmResults(DijkstraAlgorithm algorithm) {
         this.algorithm = algorithm;
     }
 

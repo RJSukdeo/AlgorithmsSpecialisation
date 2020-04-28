@@ -6,7 +6,7 @@ public final class PrimMinimumSpanningTreeAlgorithmResults {
 
     private final PrimMinimumSpanningTreeAlgorithm algorithm;
 
-    public PrimMinimumSpanningTreeAlgorithmResults(final PrimMinimumSpanningTreeAlgorithm algorithm) {
+    PrimMinimumSpanningTreeAlgorithmResults(final PrimMinimumSpanningTreeAlgorithm algorithm) {
         this.algorithm = algorithm;
     }
 

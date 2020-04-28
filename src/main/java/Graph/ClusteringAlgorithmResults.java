@@ -5,13 +5,13 @@ import DataStructures.QuickUnion;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class ClusteringAlgorithmResults {
+public final class ClusteringAlgorithmResults {
 
     private double minimumDistance;
     private double totalDistance;
     private ClusteringAlgorithm algorithm;
 
-    public ClusteringAlgorithmResults(ClusteringAlgorithm algorithm) {
+    ClusteringAlgorithmResults(ClusteringAlgorithm algorithm) {
         this.algorithm = algorithm;
         populateInstanceVariables(algorithm);
     }

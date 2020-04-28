@@ -1,18 +1,19 @@
 package CourseSolutions.Course3.Problem2_ClusteringAlgorithms;
 
 import CourseSolutions.ICourseSolution;
-import Graph.ClusteringAlgorithm;
-import Graph.ClusteringAlgorithmResults;
-import Graph.UndirectedGraphInputs;
+import Graph.*;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class AssessmentC3P2 implements ICourseSolution {
+public final class AssessmentC3P2 implements ICourseSolution {
 
     @Override
     public void run() throws FileNotFoundException {
+        System.out.println();
         runAssessmentOne();
         runAssessmentTwo();
     }
@@ -23,7 +24,9 @@ public class AssessmentC3P2 implements ICourseSolution {
     }
 
     private void runAssessmentTwo() {
-
+        HammingClusteringAlgorithm algorithm = new HammingClusteringAlgorithm(getBinaryData());
+        HammingClusteringAlgorithmResult result = algorithm.run();
+        System.out.println("Number of clusters required: " + result.getClusters());
     }
 
     private UndirectedGraphInputs getGraphInputsProblemOne() {
@@ -31,16 +34,27 @@ public class AssessmentC3P2 implements ICourseSolution {
         InputStream inputStream = ClassLoader.getSystemResourceAsStream("clustering1.txt");
         Scanner scanner = new Scanner(inputStream);
         scanner.nextLine();
-        while(scanner.hasNextLine()) {
+        while (scanner.hasNextLine()) {
             String[] entries = scanner.nextLine().split(" ");
             builder.addEntry(Integer.parseInt(entries[0]) - 1, Integer.parseInt(entries[1]) - 1, Integer.parseInt(entries[2]));
         }
         return builder.build();
     }
 
+    private List<String> getBinaryData() {
+        InputStream inputStream = ClassLoader.getSystemResourceAsStream("clustering_big.txt");
+        Scanner scanner = new Scanner(inputStream);
+        String[] info = scanner.nextLine().split(" ");
+        List<String> entries = new ArrayList<>(Integer.parseInt(info[0]));
+        while (scanner.hasNextLine()) {
+            entries.add(scanner.nextLine().replace(" ", ""));
+        }
+        return entries;
+    }
+
     @Override
     public String getProblemDescription() {
-        return "Clustering algorithm implementations.";
+        return "Clustering algorithm implementations, uses Kruskal's algorithm.";
     }
 
     @Override

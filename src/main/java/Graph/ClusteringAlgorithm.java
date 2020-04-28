@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class ClusteringAlgorithm {
+public final class ClusteringAlgorithm {
 
     private final UndirectedGraphGenerator graphGenerator;
     private PriorityQueue<UndirectedEdge> orderedEdges;

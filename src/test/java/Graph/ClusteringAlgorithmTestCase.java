@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class ClusteringAlgorithmTestCase {
+public final class ClusteringAlgorithmTestCase {
 
     @Test
     public void testExample() {
