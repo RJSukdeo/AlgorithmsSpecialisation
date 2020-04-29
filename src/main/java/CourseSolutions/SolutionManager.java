@@ -10,6 +10,7 @@ import CourseSolutions.Course2.Problem3_MedianMaintenance.AssessmentC2P3;
 import CourseSolutions.Course2.Problem4_TwoSumAlgorithm.AssessmentC2P4;
 import CourseSolutions.Course3.Problem1_GreedyAlgorithms.AssessmentC3P1;
 import CourseSolutions.Course3.Problem2_ClusteringAlgorithms.AssessmentC3P2;
+import CourseSolutions.Course3.Problem3_CompressionDynamicAlgorithms.AssessmentC3P3;
 
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -124,6 +125,7 @@ public final class SolutionManager {
         solutions.add(new AssessmentC2P4());
         solutions.add(new AssessmentC3P1());
         solutions.add(new AssessmentC3P2());
+        solutions.add(new AssessmentC3P3());
     }
 
     private static class tempComparator implements Comparator<Short> {
