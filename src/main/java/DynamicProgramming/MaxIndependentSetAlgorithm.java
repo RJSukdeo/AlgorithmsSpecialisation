@@ -1,4 +1,4 @@
-package GreedyAlgorithms;
+package DynamicProgramming;
 
 import java.util.ArrayList;
 import java.util.List;

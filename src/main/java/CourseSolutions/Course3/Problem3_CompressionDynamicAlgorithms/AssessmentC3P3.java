@@ -1,7 +1,11 @@
 package CourseSolutions.Course3.Problem3_CompressionDynamicAlgorithms;
 
 import CourseSolutions.ICourseSolution;
-import GreedyAlgorithms.*;
+import DynamicProgramming.MaxIndependentSetAlgorithm;
+import DynamicProgramming.MaxIndependentSetAlgorithmResults;
+import GreedyAlgorithms.HuffmanAlgorithm;
+import GreedyAlgorithms.HuffmanAlgorithmInput;
+import GreedyAlgorithms.HuffmanAlgorithmResults;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

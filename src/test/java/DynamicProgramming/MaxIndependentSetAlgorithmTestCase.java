@@ -1,4 +1,4 @@
-package GreedyAlgorithms;
+package DynamicProgramming;
 
 import org.junit.Test;
 
