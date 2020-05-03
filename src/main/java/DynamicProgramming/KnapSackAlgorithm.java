@@ -27,7 +27,6 @@ public class KnapSackAlgorithm {
             for (int j = 0; j <= maxWeight; j++) {
                 solution[0][j] = solution[1][j];
             }
-            if (maxWeight >= 0) System.arraycopy(solution[1], 0, solution[0], 0, maxWeight);
         }
         optimalValue = solution[1][maxWeight];
         return new KnapSackAlgorithmResults(this);

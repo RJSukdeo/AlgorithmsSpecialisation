@@ -31,7 +31,7 @@ public class AssessmentC3P4 implements ICourseSolution {
 
     @Override
     public String getProblemDescription() {
-        return "Knapsack Algorithms.";
+        return "Dynamic programming: Knapsack Algorithms.";
     }
 
     @Override
