@@ -15,14 +15,14 @@ public class AssessmentC3P4 implements ICourseSolution {
         runAssessmentTwo();
     }
 
-    private void runAssessmentOne(){
+    private void runAssessmentOne() {
         KnapSackData data = new KnapSackData("knapsack1.txt");
         KnapSackAlgorithm algorithm = new KnapSackAlgorithm(data);
         KnapSackAlgorithmResults results = algorithm.run();
         System.out.println("Assessment One Optimal Solution: " + results.getOptimalValue());
     }
 
-    private void runAssessmentTwo(){
+    private void runAssessmentTwo() {
         KnapSackData data = new KnapSackData("knapsack_big.txt");
         KnapSackAlgorithm algorithm = new KnapSackAlgorithm(data);
         KnapSackAlgorithmResults results = algorithm.run();
