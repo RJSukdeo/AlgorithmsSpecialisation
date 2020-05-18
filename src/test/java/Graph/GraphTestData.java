@@ -160,7 +160,7 @@ final class GraphTestData {
     }
 
     public static List<List<Integer>> getDirectedGraphInputs6() {
-        List<List<Integer>> graphInfo = new ArrayList<>();
+        List<List<Integer>> graphInfo = new ArrayList<>(17);
         graphInfo.add(getIntegerList(2, 6));
         graphInfo.add(getIntegerList(3, 7));
         graphInfo.add(getIntegerList(3, 8));
@@ -182,7 +182,7 @@ final class GraphTestData {
     }
 
     public static List<List<Integer>> getDirectedGraphInputs7() {
-        List<List<Integer>> graphInfo = new ArrayList<>();
+        List<List<Integer>> graphInfo = new ArrayList<>(10);
         graphInfo.add(getIntegerList(0, 1, 3));
         graphInfo.add(getIntegerList(0, 5, 2));
         graphInfo.add(getIntegerList(5, 1, 2));
@@ -193,6 +193,31 @@ final class GraphTestData {
         graphInfo.add(getIntegerList(6, 3, 4));
         graphInfo.add(getIntegerList(0, 4, 6));
         graphInfo.add(getIntegerList(4, 3, 2));
+        return graphInfo;
+    }
+
+    // Directed with negative weights.
+    public static List<List<Integer>> getDirectedGraphInputs8() {
+        List<List<Integer>> graphInfo = new ArrayList<>(8);
+        graphInfo.add(getIntegerList(0, 1, -1));
+        graphInfo.add(getIntegerList(0, 2, 4));
+        graphInfo.add(getIntegerList(1, 2, 3));
+        graphInfo.add(getIntegerList(3, 2, 5));
+        graphInfo.add(getIntegerList(3, 1, 1));
+        graphInfo.add(getIntegerList(1, 3, 2));
+        graphInfo.add(getIntegerList(1, 4, 2));
+        graphInfo.add(getIntegerList(4, 3, -3));
+        return graphInfo;
+    }
+
+    // Directed with negative weights and a negative cycle.
+    public static List<List<Integer>> getDirectedGraphInputs9() {
+        List<List<Integer>> graphInfo = new ArrayList<>();
+        graphInfo.add(getIntegerList(0, 1, 5));
+        graphInfo.add(getIntegerList(0, 2, 4));
+        graphInfo.add(getIntegerList(2, 1, -6));
+        graphInfo.add(getIntegerList(1, 3, 3));
+        graphInfo.add(getIntegerList(3, 2, 2));
         return graphInfo;
     }
 
