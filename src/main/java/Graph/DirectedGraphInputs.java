@@ -22,13 +22,25 @@ public final class DirectedGraphInputs {
             this.edgeInputContainer = new EdgeInputContainer();
         }
 
+        public InputBuilder addEntry(Integer tailNodeId, Integer headNodeId, Integer length) {
+            edgeInputContainer.addEntry(tailNodeId, headNodeId, length);
+            return this;
+        }
+
         public InputBuilder addEntry(Integer tailNodeId, Integer headNodeId) {
-            edgeInputContainer.addEntry(tailNodeId, headNodeId, 0);
+            addEntry(tailNodeId, headNodeId, 0);
             return this;
         }
 
         public InputBuilder addEntries(List<List<Integer>> entries) {
-            entries.forEach(entry -> edgeInputContainer.addEntry(entry.get(0), entry.get(1), 0));
+            for (List<Integer> entry : entries) {
+                if (entry.size() == 2) {
+                    edgeInputContainer.addEntry(entry.get(0), entry.get(1), 0);
+                }
+                if (entry.size() == 3) {
+                    edgeInputContainer.addEntry(entry.get(0), entry.get(1), entry.get(2));
+                }
+            }
             return this;
         }
 

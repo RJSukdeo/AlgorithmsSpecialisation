@@ -10,8 +10,19 @@ public final class DijkstraAlgorithm {
     private final Map<Integer, Node> nodeIdToNodeMap;
     private final Set<Node> unvisitedNodes;
     private final Set<Node> frontierNodes;
+    private final boolean isDirected;
 
     public DijkstraAlgorithm(final UndirectedGraphGenerator graphGenerator) {
+        isDirected = false;
+        frontierNodes = new HashSet<>();
+        unvisitedNodes = graphGenerator.getNodes(true);
+        nodeToDistanceMap = new HashMap<>(unvisitedNodes.size());
+        nodeIdToNodeMap = new HashMap<>(unvisitedNodes.size());
+        populateMaps();
+    }
+
+    public DijkstraAlgorithm(final DirectedGraphGenerator graphGenerator) {
+        isDirected = true;
         unvisitedNodes = graphGenerator.getNodes(true);
         frontierNodes = new HashSet<>();
         nodeToDistanceMap = new HashMap<>(unvisitedNodes.size());
@@ -31,7 +42,7 @@ public final class DijkstraAlgorithm {
         initialiseAlgorithm(startingNodeId);
         while (!unvisitedNodes.isEmpty()) {
             PriorityQueue<DistanceContainer> heap = new PriorityQueue<>(new DistanceContainerComparator());
-            List<UndirectedEdge> edgesBetweenTwoSets = getApplicableEdges();
+            List<Edge> edgesBetweenTwoSets = getApplicableEdges();
             calculateDistancesAndUpdateHeap(edgesBetweenTwoSets, heap);
             DistanceContainer distanceContainer = heap.poll();
             Node nodeToBeIncluded = distanceContainer.getNode();
@@ -42,18 +53,24 @@ public final class DijkstraAlgorithm {
         return new DijkstraAlgorithmResults(this);
     }
 
-    private void calculateDistancesAndUpdateHeap(List<UndirectedEdge> edges, PriorityQueue<DistanceContainer> heap) {
-        for (UndirectedEdge edge : edges) {
+    private void calculateDistancesAndUpdateHeap(List<Edge> edges, PriorityQueue<DistanceContainer> heap) {
+        for (Edge edge : edges) {
             double distFromLastNode = nodeToDistanceMap.get(getOriginationNode(edge));
             DistanceContainer distanceContainer = new DistanceContainer(getUnvisitedNode(edge), distFromLastNode + edge.getLength());
             heap.add(distanceContainer);
         }
     }
 
-    private List<UndirectedEdge> getApplicableEdges() {
-        List<UndirectedEdge> applicableEdges = new ArrayList<>();
-        for (Node frontierNode : frontierNodes) {
-            applicableEdges.addAll(frontierNode.getConnectedEdges().stream().filter(edge -> edgeBetweenTwoSets(edge)).map(edge -> (UndirectedEdge) edge).collect(Collectors.toList()));
+    private List<Edge> getApplicableEdges() {
+        List<Edge> applicableEdges = new ArrayList<>();
+        if (isDirected) {
+            for (Node frontierNode : frontierNodes) {
+                applicableEdges.addAll(frontierNode.getConnectedEdges().stream().map(edge -> (DirectedEdge) edge).filter(edge -> edgeBetweenTwoSets(edge) && !edge.getHead().equals(frontierNode)).collect(Collectors.toList()));
+            }
+        } else {
+            for (Node frontierNode : frontierNodes) {
+                applicableEdges.addAll(frontierNode.getConnectedEdges().stream().filter(edge -> edgeBetweenTwoSets(edge)).map(edge -> (UndirectedEdge) edge).collect(Collectors.toList()));
+            }
         }
         return applicableEdges;
     }
@@ -80,11 +97,11 @@ public final class DijkstraAlgorithm {
         return (containsNode1 && !containsNode2) || (containsNode2 && !containsNode1);
     }
 
-    private Node getUnvisitedNode(UndirectedEdge edge) {
+    private Node getUnvisitedNode(Edge edge) {
         return unvisitedNodes.contains(edge.getEncompassingNodes().get(0)) ? edge.getEncompassingNodes().get(0) : edge.getEncompassingNodes().get(1);
     }
 
-    private Node getOriginationNode(UndirectedEdge edge) {
+    private Node getOriginationNode(Edge edge) {
         return unvisitedNodes.contains(edge.getEncompassingNodes().get(0)) ? edge.getEncompassingNodes().get(1) : edge.getEncompassingNodes().get(0);
     }
 

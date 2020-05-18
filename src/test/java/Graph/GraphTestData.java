@@ -7,8 +7,6 @@ final class GraphTestData {
     private GraphTestData() {
     }
 
-    ;
-
     //  getGraphInputs produces the input to be used by GraphManager, graph represented below.
 //
 //  1-----2
@@ -60,20 +58,20 @@ final class GraphTestData {
 
     public static UndirectedGraphInputs.InputBuilder getUndirectedGraphInputsWithLength2() {
         UndirectedGraphInputs.InputBuilder builder = new UndirectedGraphInputs.InputBuilder();
-        builder.addEntry(0,1, 4);
-        builder.addEntry(1,7, 11);
-        builder.addEntry(0,7, 8);
-        builder.addEntry(1,2, 8);
-        builder.addEntry(2,8, 2);
-        builder.addEntry(7,8, 7);
-        builder.addEntry(7,6, 1);
-        builder.addEntry(8,6, 6);
-        builder.addEntry(6,5, 2);
-        builder.addEntry(2,5, 4);
-        builder.addEntry(2,3, 7);
-        builder.addEntry(3,4, 9);
-        builder.addEntry(5,4, 10);
-        builder.addEntry(3,5, 14);
+        builder.addEntry(0, 1, 4);
+        builder.addEntry(1, 7, 11);
+        builder.addEntry(0, 7, 8);
+        builder.addEntry(1, 2, 8);
+        builder.addEntry(2, 8, 2);
+        builder.addEntry(7, 8, 7);
+        builder.addEntry(7, 6, 1);
+        builder.addEntry(8, 6, 6);
+        builder.addEntry(6, 5, 2);
+        builder.addEntry(2, 5, 4);
+        builder.addEntry(2, 3, 7);
+        builder.addEntry(3, 4, 9);
+        builder.addEntry(5, 4, 10);
+        builder.addEntry(3, 5, 14);
         return builder;
     }
 
@@ -180,6 +178,21 @@ final class GraphTestData {
         graphInfo.add(getIntegerList(4, 3));
         graphInfo.add(getIntegerList(9, 4));
         graphInfo.add(getIntegerList(9, 8));
+        return graphInfo;
+    }
+
+    public static List<List<Integer>> getDirectedGraphInputs7() {
+        List<List<Integer>> graphInfo = new ArrayList<>();
+        graphInfo.add(getIntegerList(0, 1, 3));
+        graphInfo.add(getIntegerList(0, 5, 2));
+        graphInfo.add(getIntegerList(5, 1, 2));
+        graphInfo.add(getIntegerList(1, 2, 6));
+        graphInfo.add(getIntegerList(1, 6, 1));
+        graphInfo.add(getIntegerList(5, 6, 3));
+        graphInfo.add(getIntegerList(2, 3, 1));
+        graphInfo.add(getIntegerList(6, 3, 4));
+        graphInfo.add(getIntegerList(0, 4, 6));
+        graphInfo.add(getIntegerList(4, 3, 2));
         return graphInfo;
     }
 

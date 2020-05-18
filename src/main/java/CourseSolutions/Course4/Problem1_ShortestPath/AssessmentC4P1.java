@@ -4,7 +4,7 @@ import CourseSolutions.ICourseSolution;
 
 import java.io.FileNotFoundException;
 
-public class AssessmentC4P1 implements ICourseSolution {
+public final class AssessmentC4P1 implements ICourseSolution {
 
     @Override
     public void run() throws FileNotFoundException {

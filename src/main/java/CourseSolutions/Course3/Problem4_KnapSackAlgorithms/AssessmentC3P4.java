@@ -7,7 +7,7 @@ import DynamicProgramming.KnapSackData;
 
 import java.io.FileNotFoundException;
 
-public class AssessmentC3P4 implements ICourseSolution {
+public final class AssessmentC3P4 implements ICourseSolution {
 
     @Override
     public void run() throws FileNotFoundException {
