@@ -1,10 +1,11 @@
 package Graph;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-final class EdgeInputContainer {
+final class EdgeInputContainer implements Cloneable {
 
     private final Map<NodeKey, IEdgeLength> edgeInputMap;
 
@@ -33,4 +34,10 @@ final class EdgeInputContainer {
     public Set<NodeKey> getNodes() {
         return edgeInputMap.keySet();
     }
+
+    @Override
+    public Object clone() {
+        return new HashMap<>(edgeInputMap);
+    }
+
 }

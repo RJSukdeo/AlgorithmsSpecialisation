@@ -43,12 +43,16 @@ public final class DijkstraAlgorithm {
         while (!unvisitedNodes.isEmpty()) {
             PriorityQueue<DistanceContainer> heap = new PriorityQueue<>(new DistanceContainerComparator());
             List<Edge> edgesBetweenTwoSets = getApplicableEdges();
-            calculateDistancesAndUpdateHeap(edgesBetweenTwoSets, heap);
-            DistanceContainer distanceContainer = heap.poll();
-            Node nodeToBeIncluded = distanceContainer.getNode();
-            nodeToDistanceMap.put(nodeToBeIncluded, distanceContainer.getLength());
-            moveNodeToVisited(nodeToBeIncluded);
-            cleanUpFrontier();
+            if (edgesBetweenTwoSets.size() != 0) {
+                calculateDistancesAndUpdateHeap(edgesBetweenTwoSets, heap);
+                DistanceContainer distanceContainer = heap.poll();
+                Node nodeToBeIncluded = distanceContainer.getNode();
+                nodeToDistanceMap.put(nodeToBeIncluded, distanceContainer.getLength());
+                moveNodeToVisited(nodeToBeIncluded);
+                cleanUpFrontier();
+            } else {
+                break;
+            }
         }
         return new DijkstraAlgorithmResults(this);
     }
@@ -124,6 +128,10 @@ public final class DijkstraAlgorithm {
             nodeIdToNodeMap.put(node.getId(), node);
             nodeToDistanceMap.put(node, NODE_UNREACHABLE_DISTANCE);
         }
+    }
+
+    public double getUnreachableDistanceValue() {
+        return NODE_UNREACHABLE_DISTANCE;
     }
 
     private class DistanceContainerComparator implements Comparator<DistanceContainer> {

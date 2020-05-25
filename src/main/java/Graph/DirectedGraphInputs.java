@@ -32,7 +32,8 @@ public final class DirectedGraphInputs {
             return this;
         }
 
-        public InputBuilder addEntries(List<List<Integer>> entries) {
+        // Used to make unit testing easier.
+        InputBuilder addEntries(List<List<Integer>> entries) {
             for (List<Integer> entry : entries) {
                 if (entry.size() == 2) {
                     edgeInputContainer.addEntry(entry.get(0), entry.get(1), 0);

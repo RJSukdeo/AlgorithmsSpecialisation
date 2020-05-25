@@ -10,11 +10,15 @@ public final class BellmanFordAlgorithm {
 
     private final Set<Node> nodes;
     private final Map<Integer, Node> nodeIdToNodeMap;
+    private final Map<Integer, Integer> nodeIdToIndex;
+    private final Map<Integer, Integer> indexToNodeId;
     private long[][] matrix;
 
     public BellmanFordAlgorithm(DirectedGraphGenerator graphGenerator) {
         nodes = graphGenerator.getNodes(true);
         nodeIdToNodeMap = new HashMap<>(nodes.size());
+        nodeIdToIndex = new HashMap<>(nodes.size());
+        indexToNodeId = new HashMap<>(nodes.size());
         populateMaps();
     }
 
@@ -23,7 +27,7 @@ public final class BellmanFordAlgorithm {
         for (int i = 1; i < nodes.size() + 1; i++) {
             boolean rowEqualToLast = true;
             for (int v = 0; v < nodes.size(); v++) {
-                matrix[i][v] = Math.min(matrix[i - 1][v], getSmallestApplicableLength(v, i));
+                matrix[i][v] = Math.min(matrix[i - 1][v], getSmallestApplicableLength(indexToNodeId.get(v), i));
                 if (rowEqualToLast && matrix[i][v] != matrix[i - 1][v]) {
                     rowEqualToLast = false;
                 }
@@ -50,6 +54,10 @@ public final class BellmanFordAlgorithm {
         return matrix;
     }
 
+    Map<Integer, Integer> getIndexToNodeId() {
+        return indexToNodeId;
+    }
+
     // On early exit, populate last two rows of matrix.
     private void populateFinalRows(int lastRowNumber) {
         for (int v = 0; v < nodes.size(); v++) {
@@ -66,13 +74,19 @@ public final class BellmanFordAlgorithm {
         }
         long length = Integer.MAX_VALUE;
         for (DirectedEdge edge : applicableEdges) {
-            length = Math.min(length, (long) edge.getLength() + matrix[i - 1][edge.getTail().getId()]);
+            length = Math.min(length, (long) edge.getLength() + matrix[i - 1][nodeIdToIndex.get(edge.getTail().getId())]);
         }
         return length;
     }
 
     private void populateMaps() {
-        nodes.forEach(node -> nodeIdToNodeMap.put(node.getId(), node));
+        int counter = 0;
+        for (Node node : nodes) {
+            nodeIdToNodeMap.put(node.getId(), node);
+            nodeIdToIndex.put(node.getId(), counter);
+            indexToNodeId.put(counter, node.getId());
+            counter++;
+        }
     }
 
     private void initialiseMatrix(int startNodeId) {
@@ -80,7 +94,7 @@ public final class BellmanFordAlgorithm {
         for (int i = 0; i < nodes.size(); i++) {
             matrix[0][i] = Integer.MAX_VALUE;
         }
-        matrix[0][startNodeId] = 0;
+        matrix[0][nodeIdToIndex.get(startNodeId)] = 0;
     }
 
 }
