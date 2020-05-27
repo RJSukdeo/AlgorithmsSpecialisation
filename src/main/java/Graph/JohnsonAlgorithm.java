@@ -20,15 +20,12 @@ public final class JohnsonAlgorithm {
         detectNegativeCycles(nodeIdToDistanceMap);
         if (!negativeCycleDetected) {
             DirectedGraphGenerator graphGenerator = generateNewGraph(nodeIdToDistanceMap);
-            int counter = 0;
             for (Node node : graphGenerator.getNodes(true)) {
                 if (node.getId() != newNodeId) {
                     DijkstraAlgorithm algorithm = new DijkstraAlgorithm(graphGenerator);
                     DijkstraAlgorithmResults results = algorithm.run(node.getId());
                     Map<Integer, Long> resultMap = revertWeights(node.getId(), results.getNodeIdToDistanceMap(), nodeIdToDistanceMap, algorithm.getUnreachableDistanceValue());
                     allNodeIdToResultMap.put(node.getId(), resultMap);
-                    System.out.println(counter);
-                    counter++;
                 }
             }
         }
