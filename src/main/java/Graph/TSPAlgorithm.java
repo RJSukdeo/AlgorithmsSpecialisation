@@ -102,34 +102,30 @@ public final class TSPAlgorithm {
 
     private static class MatrixIndex {
 
-        private Set<Integer> pathSet;
-        private Set<Integer> destinationSet;
+        private final int hash;
+        private final int destinationId;
 
-        public MatrixIndex(Set<Integer> pathSet, int destinationId) {
-            this.pathSet = pathSet;
-            destinationSet = new HashSet<>(1);
-            destinationSet.add(destinationId);
+        private MatrixIndex(Set<Integer> pathSet, int destinationId) {
+            this.destinationId = destinationId;
+            this.hash = Objects.hash(pathSet, destinationId);
         }
 
-        public Integer getDestinationId() {
-            Iterator<Integer> iterator = destinationSet.iterator();
-            return iterator.next();
+        int getDestinationId() {
+            return destinationId;
         }
 
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-            MatrixIndex that = (MatrixIndex) o;
-            return Objects.equals(pathSet, that.pathSet) &&
-                    Objects.equals(destinationSet, that.destinationSet);
+            MatrixIndex index = (MatrixIndex) o;
+            return hash == index.hash;
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(pathSet, destinationSet);
+            return hash;
         }
-
     }
 
 }
