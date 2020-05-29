@@ -4,27 +4,27 @@ import Combinatorics.CombinatoricsUtil;
 
 import java.util.*;
 
-// Travelling salesman problem. Assumes node ids start from 1 and are consecutive. Maximum number of nodes 32, using bit masking.
+// Travelling salesman problem. Assumes node ids start from 1 and are consecutive. Maximum number of nodes 16, using bit masking, need space for set S and destination nodeId.
 public final class TSPAlgorithm {
 
     private static final double MAX_VALUE = 100000000;
     private static final int STARTING_NODE_ID = 1;
     private final Map<Integer, Node> nodeIdToNodeMap;
-    private Map<MatrixIndex, Double> currentResults;
-    private Map<MatrixIndex, Double> oldResults;
-    private double minDistance = MAX_VALUE;
+    private Map<MatrixIndex, GraphPath> currentResults;
+    private Map<MatrixIndex, GraphPath> oldResults;
+    private GraphPath minGraph;
 
     public TSPAlgorithm(final UndirectedGraphGenerator graphGenerator) {
         Set<Node> initialNodes = graphGenerator.getNodes(true);
         nodeIdToNodeMap = new HashMap<>(initialNodes.size());
         currentResults = new HashMap<>();
         oldResults = new HashMap<>();
+        minGraph = new GraphPath(STARTING_NODE_ID, initialNodes.size() - 1);
         populateMaps(initialNodes, oldResults, nodeIdToNodeMap, initialNodes.size());
     }
 
     public TSPAlgorithmResults run() {
         for (int m = STARTING_NODE_ID + 1; m <= nodeIdToNodeMap.keySet().size(); m++) {
-            System.out.println("m: " + m);
             Integer[] nodeIds = getCombinationsWithoutStartingNode().toArray(new Integer[0]);
             List<Set<Integer>> allPossibleCombinations = CombinatoricsUtil.getAllPossibleCombinations(nodeIds, m - 1);
             currentResults = new HashMap<>((m - 1) * allPossibleCombinations.size());
@@ -32,18 +32,7 @@ public final class TSPAlgorithm {
                 combination.add(STARTING_NODE_ID);
                 for (final int finalNodeId : combination) {
                     if (finalNodeId != STARTING_NODE_ID) {
-                        // A[s,j]
-                        MatrixIndex matrixIndex = new MatrixIndex(combination, finalNodeId, nodeIdToNodeMap.keySet().size());
-//                        System.out.println("Matrix Index: " + matrixIndex.hash);
-                        double matrixValue = getOptimalValue(combination, oldResults, finalNodeId);
-//                        System.out.println("Matrix Value: " + matrixValue);
-                        if (currentResults.containsKey(matrixIndex)) {
-                            System.out.println("Duplicate index detected.");
-//                            System.out.println("New value: " + matrixValue);
-//                            System.out.println("Old value: " + currentResults);
-                            outputDuplicateInformation(matrixIndex, matrixValue);
-                        }
-                        currentResults.put(matrixIndex, matrixValue);
+                        currentResults.put(new MatrixIndex(combination, finalNodeId, nodeIdToNodeMap.keySet().size()), getOptimalValue(combination, oldResults, finalNodeId));
                     }
                 }
             }
@@ -53,25 +42,12 @@ public final class TSPAlgorithm {
         return new TSPAlgorithmResults(this);
     }
 
-    private void outputDuplicateInformation(MatrixIndex matrixIndex, double matrixValue) {
-//        System.out.println("New Set: " + matrixIndex.pathSet);
-        System.out.println("New Destination: " + matrixIndex.destinationId);
-        System.out.println("New Value: " + matrixValue);
-        System.out.println("New Hash: " + matrixIndex.hash);
-        System.out.println();
-        for (MatrixIndex index : currentResults.keySet()) {
-            if (index.hash == matrixIndex.hash) {
-//                System.out.println("Old Set: " + index.pathSet);
-                System.out.println("Old Destination: " + index.destinationId);
-                System.out.println("Old Value: " + currentResults.get(index));
-                System.out.println("Old Hash: " + index.hash);
-            }
-        }
-
+    double getShortestDistance() {
+        return minGraph.getPathLength();
     }
 
-    double getShortestDistance() {
-        return minDistance;
+    List<Integer> getNodePath() {
+        return minGraph.getNodePath();
     }
 
     private Set<Integer> getCombinationsWithoutStartingNode() {
@@ -80,54 +56,70 @@ public final class TSPAlgorithm {
         return tempNodeIds;
     }
 
-    private double getOptimalValue(final Set<Integer> combination, final Map<MatrixIndex, Double> resultMatrix, final int finalNodeId) {
+    private GraphPath getOptimalValue(final Set<Integer> combination, final Map<MatrixIndex, GraphPath> resultMatrix, final int finalNodeId) {
         double minValue = MAX_VALUE;
+        GraphPath optimalPath = new GraphPath(STARTING_NODE_ID, combination.size() - 1);
         for (int penUltimateNodeId : combination) {
             if (penUltimateNodeId != finalNodeId) {
-                double length = nodeIdToNodeMap.get(penUltimateNodeId).getConnectedEdges().stream().filter(edge -> edge.containsNode(nodeIdToNodeMap.get(finalNodeId))).findFirst().get().getLength();
+                Edge finalEdge = nodeIdToNodeMap.get(penUltimateNodeId).getConnectedEdges().stream().filter(edge -> edge.containsNode(nodeIdToNodeMap.get(finalNodeId))).findFirst().get();
+                double length = finalEdge.getLength();
                 Set<Integer> adjustedSet = new HashSet<>(combination);
                 adjustedSet.remove(finalNodeId);
                 MatrixIndex index = new MatrixIndex(adjustedSet, penUltimateNodeId, nodeIdToNodeMap.keySet().size());
                 if (resultMatrix.containsKey(index)) {
-                    minValue = Math.min(minValue, resultMatrix.get(index) + length);
+                    GraphPath previousPath = resultMatrix.get(index);
+                    double optimalValue = previousPath.getPathLength() + length;
+                    if (optimalValue < minValue) {
+                        minValue = optimalValue;
+                        optimalPath = new GraphPath(STARTING_NODE_ID, combination.size() - 1);
+                        optimalPath.setPathLength(optimalValue);
+                        optimalPath.addEdge(previousPath.getEdges());
+                        optimalPath.addEdge(finalEdge);
+                    }
                 }
             }
         }
-        return minValue;
+        return optimalPath;
     }
 
-    private void populateMaps(final Set<Node> nodes, final Map<MatrixIndex, Double> oldResults, final Map<Integer, Node> nodeIdToNodeMap, int numNodes) {
+    private void populateMaps(final Set<Node> nodes, final Map<MatrixIndex, GraphPath> oldResults, final Map<Integer, Node> nodeIdToNodeMap, int numNodes) {
+        GraphPath path;
         for (Node node : nodes) {
+            path = new GraphPath(STARTING_NODE_ID, numNodes - 1);
+            path.setPathLength(MAX_VALUE);
             nodeIdToNodeMap.put(node.getId(), node);
-            oldResults.put(new MatrixIndex(Collections.singleton(node.getId()), STARTING_NODE_ID, numNodes), MAX_VALUE);
+            oldResults.put(new MatrixIndex(Collections.singleton(node.getId()), STARTING_NODE_ID, numNodes), path);
         }
-        oldResults.put(new MatrixIndex(Collections.singleton(STARTING_NODE_ID), STARTING_NODE_ID, numNodes), 0.0);
+        path = new GraphPath(STARTING_NODE_ID, numNodes - 1);
+        path.setPathLength(0.0);
+        oldResults.put(new MatrixIndex(Collections.singleton(STARTING_NODE_ID), STARTING_NODE_ID, numNodes), path);
     }
 
     private void calcMinDistance() {
-        int destinationId = STARTING_NODE_ID;
+        double minDistance = MAX_VALUE;
+        List<Edge> minNodePath = new ArrayList<>();
         for (Integer nodeId : nodeIdToNodeMap.keySet()) {
             if (nodeId != STARTING_NODE_ID) {
                 MatrixIndex index = new MatrixIndex(nodeIdToNodeMap.keySet(), nodeId, nodeIdToNodeMap.keySet().size());
-                double value = currentResults.get(index);
-                if (value < minDistance) {
-                    minDistance = value;
-                    destinationId = index.getDestinationId();
+                double pathValues = currentResults.get(index).getPathLength();
+                double lengthOfFinalEdge = nodeIdToNodeMap.get(nodeId).getConnectedEdges().stream().filter(e -> e.containsNode(nodeIdToNodeMap.get(STARTING_NODE_ID))).findFirst().get().getLength();
+                double totalLength = pathValues + lengthOfFinalEdge;
+                if (totalLength < minDistance) {
+                    minDistance = totalLength;
+                    minNodePath = currentResults.get(index).getEdges();
                 }
             }
         }
-        Node node = nodeIdToNodeMap.get(destinationId);
-        double lengthOfFinalEdge = node.getConnectedEdges().stream().filter(e -> e.containsNode(nodeIdToNodeMap.get(STARTING_NODE_ID))).findFirst().get().getLength();
-        minDistance += lengthOfFinalEdge;
+        minGraph = new GraphPath(STARTING_NODE_ID, nodeIdToNodeMap.keySet().size());
+        minGraph.setPathLength(minDistance);
+        minGraph.addEdge(minNodePath);
     }
 
     private static class MatrixIndex {
 
         private final int hash;
-        private final int destinationId;
 
         private MatrixIndex(Set<Integer> pathSet, int destinationId, int numNodes) {
-            this.destinationId = destinationId;
             this.hash = generateHash(pathSet, destinationId, numNodes);
         }
 
@@ -138,10 +130,6 @@ public final class TSPAlgorithm {
             }
             mask = mask | (1 << (numNodes + destinationId));
             return mask;
-        }
-
-        int getDestinationId() {
-            return destinationId;
         }
 
         @Override
@@ -156,31 +144,53 @@ public final class TSPAlgorithm {
         public int hashCode() {
             return hash;
         }
-
     }
 
-    private static class Path {
+    private static class GraphPath {
 
         private final List<Edge> edges;
-        private double distance;
+        private final int startNodeId;
+        private double pathLength;
 
-        public Path(double distance, List<Edge> edges) {
-            this.distance = distance;
-            this.edges = edges;
+        public GraphPath(int startNodeId, int numEdges) {
+            this.startNodeId = startNodeId;
+            this.edges = new ArrayList<>(numEdges);
+            this.pathLength = 0;
         }
 
         public void addEdge(Edge edge) {
             edges.add(edge);
         }
 
+        public void addEdge(List<Edge> edges) {
+            this.edges.addAll(edges);
+        }
+
         public List<Edge> getEdges() {
             return edges;
         }
 
-        public double getDistance() {
-            return distance;
+        public void setPathLength(double pathLength) {
+            this.pathLength = pathLength;
         }
 
+        public double getPathLength() {
+            return pathLength;
+        }
+
+        public List<Integer> getNodePath() {
+            List<Integer> nodePath = new ArrayList<>(edges.size() + 1);
+            nodePath.add(startNodeId);
+            for (int i = 0; i < edges.size(); i++) {
+                Edge edge = edges.get(i);
+                for (Node node : edge.getEncompassingNodes()) {
+                    if (node.getId() != nodePath.get(i)) {
+                        nodePath.add(node.getId());
+                    }
+                }
+            }
+            return nodePath;
+        }
     }
 
 }

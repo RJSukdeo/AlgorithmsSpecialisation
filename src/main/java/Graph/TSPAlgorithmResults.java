@@ -1,5 +1,7 @@
 package Graph;
 
+import java.util.List;
+
 public final class TSPAlgorithmResults {
 
     private final TSPAlgorithm algorithm;
@@ -10,6 +12,10 @@ public final class TSPAlgorithmResults {
 
     public double getShortestDistance() {
         return algorithm.getShortestDistance();
+    }
+
+    public List<Integer> getNodePath() {
+        return algorithm.getNodePath();
     }
 
 }

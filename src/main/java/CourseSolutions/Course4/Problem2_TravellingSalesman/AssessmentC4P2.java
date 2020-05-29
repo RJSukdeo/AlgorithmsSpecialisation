@@ -5,6 +5,8 @@ import Graph.*;
 
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class AssessmentC4P2 implements ICourseSolution {
@@ -13,23 +15,45 @@ public class AssessmentC4P2 implements ICourseSolution {
     public void run() throws FileNotFoundException {
         TwoDimensionPoint[] points = getTwoDimensionalPoints();
         runSplitGraphAlgorithm(points);
+//        runEntireGraphAlgorithm(points);
+    }
+
+    private void runEntireGraphAlgorithm(TwoDimensionPoint[] points) {
+        Collections.reverse(Arrays.asList(points));
+        UndirectedGraphGenerator graphGenerator = UndirectedGraphGenerator.getGenerator(getGraphInputs(points));
+        TSPAlgorithm algorithm = new TSPAlgorithm(graphGenerator);
+        TSPAlgorithmResults results = algorithm.run();
+        System.out.println();
+        System.out.println("Total distance: " + results.getShortestDistance());
+    }
+
+    private void printNodePath(List<Integer> nodeIds) {
+        StringBuilder sb =  new StringBuilder();
+        sb.append("Node path: ");
+        sb.append(nodeIds.get(0));
+        for (int i = 1; i < nodeIds.size(); i++) {
+            sb.append(" --> ");
+            sb.append(nodeIds.get(i));
+        }
+        System.out.println(sb);
     }
 
     private void runSplitGraphAlgorithm(TwoDimensionPoint[] points) {
-        double firstGraphDistance = getShortestDistance(points, 0, 13);
-        double secondGraphDistance = getShortestDistance(points, 11, 25);
+        TSPAlgorithmResults firstGraphResults = getAlgorithmResults(points, 0, 13);
+        TSPAlgorithmResults secondGraphResults = getAlgorithmResults(points, 11, 25);
         double repeatedLineDistance = EuclideanDistance.getEuclideanDistance(points[11], points[12]);
-        System.out.println("First Distance: " + firstGraphDistance);
-        System.out.println("Second distance: " + secondGraphDistance);
+        System.out.println("First Distance: " + firstGraphResults.getShortestDistance());
+        printNodePath(firstGraphResults.getNodePath());
+        System.out.println("Second distance: " + secondGraphResults.getShortestDistance());
+        printNodePath(secondGraphResults.getNodePath());
         System.out.println("Repeated line distance: " + repeatedLineDistance);
-        System.out.println("Total distance: " + ((firstGraphDistance + secondGraphDistance) - 2 * (repeatedLineDistance)));
+        System.out.println("Total distance: " + ((firstGraphResults.getShortestDistance() + secondGraphResults.getShortestDistance()) - 2 * (repeatedLineDistance)));
     }
 
-    private double getShortestDistance(TwoDimensionPoint[] points, int copyStart, int copyEnd) {
+    private TSPAlgorithmResults getAlgorithmResults(TwoDimensionPoint[] points, int copyStart, int copyEnd) {
         UndirectedGraphGenerator graphGenerator = UndirectedGraphGenerator.getGenerator(getGraphInputs(Arrays.copyOfRange(points, copyStart, copyEnd)));
         TSPAlgorithm algorithm = new TSPAlgorithm(graphGenerator);
-        TSPAlgorithmResults results = algorithm.run();
-        return results.getShortestDistance();
+        return algorithm.run();
     }
 
     private TwoDimensionPoint[] getTwoDimensionalPoints() {

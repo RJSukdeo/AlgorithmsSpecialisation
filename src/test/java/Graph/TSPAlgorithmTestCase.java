@@ -19,7 +19,7 @@ public class TSPAlgorithmTestCase {
         UndirectedGraphGenerator graphGenerator = UndirectedGraphGenerator.getGenerator(getGraphInputsExample2());
         TSPAlgorithm algorithm = new TSPAlgorithm(graphGenerator);
         TSPAlgorithmResults results = algorithm.run();
-        assertEquals(550.0, results.getShortestDistance(), 1e-1);
+        assertEquals(375.0, results.getShortestDistance(), 1e-1);
     }
 
     @Test
