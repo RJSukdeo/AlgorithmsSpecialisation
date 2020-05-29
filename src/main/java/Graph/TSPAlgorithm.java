@@ -102,11 +102,13 @@ public final class TSPAlgorithm {
             if (nodeId != STARTING_NODE_ID) {
                 MatrixIndex index = new MatrixIndex(nodeIdToNodeMap.keySet(), nodeId, nodeIdToNodeMap.keySet().size());
                 double pathValues = currentResults.get(index).getPathLength();
-                double lengthOfFinalEdge = nodeIdToNodeMap.get(nodeId).getConnectedEdges().stream().filter(e -> e.containsNode(nodeIdToNodeMap.get(STARTING_NODE_ID))).findFirst().get().getLength();
+                Edge finalEdge = nodeIdToNodeMap.get(nodeId).getConnectedEdges().stream().filter(e -> e.containsNode(nodeIdToNodeMap.get(STARTING_NODE_ID))).findFirst().get();
+                double lengthOfFinalEdge = finalEdge.getLength();
                 double totalLength = pathValues + lengthOfFinalEdge;
                 if (totalLength < minDistance) {
                     minDistance = totalLength;
                     minNodePath = currentResults.get(index).getEdges();
+                    minNodePath.add(finalEdge);
                 }
             }
         }
