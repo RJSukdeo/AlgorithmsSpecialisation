@@ -11,7 +11,7 @@ public final class TSPHeuristicAlgorithmTestCase {
 
     @Test
     public void testExample() {
-        TSPHeuristicAlgorithmNoGraphGenerator algorithm = new TSPHeuristicAlgorithmNoGraphGenerator(getGraphInput());
+        TSPHeuristicAlgorithm algorithm = new TSPHeuristicAlgorithm(getGraphInput());
         TSPHeuristicAlgorithmResults results = algorithm.run(1);
         assertEquals(37.80585655, results.getMinimumDistance(), 1e-8);
     }

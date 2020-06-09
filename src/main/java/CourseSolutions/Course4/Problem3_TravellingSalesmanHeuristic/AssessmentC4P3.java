@@ -1,7 +1,7 @@
 package CourseSolutions.Course4.Problem3_TravellingSalesmanHeuristic;
 
 import CourseSolutions.ICourseSolution;
-import Graph.TSPHeuristicAlgorithmNoGraphGenerator;
+import Graph.TSPHeuristicAlgorithm;
 import Graph.TSPHeuristicAlgorithmResults;
 import Graph.TwoDimensionPoint;
 
@@ -14,7 +14,7 @@ public class AssessmentC4P3 implements ICourseSolution {
 
     @Override
     public void run() throws FileNotFoundException {
-        TSPHeuristicAlgorithmNoGraphGenerator algorithm = new TSPHeuristicAlgorithmNoGraphGenerator(getGraphInputs());
+        TSPHeuristicAlgorithm algorithm = new TSPHeuristicAlgorithm(getGraphInputs());
         TSPHeuristicAlgorithmResults results = algorithm.run(1);
         System.out.println("Minimum distance: " + results.getMinimumDistance());
     }

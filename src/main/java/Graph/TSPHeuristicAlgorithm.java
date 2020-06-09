@@ -4,12 +4,14 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public final class TSPHeuristicAlgorithmNoGraphGenerator {
+// Note this algorithm does not use the graph generator framework used by other algorithms. Graph size is too large to
+// create all edges, hence space saving solution below.
+public final class TSPHeuristicAlgorithm {
 
     private final Map<Integer, TwoDimensionPoint> nodeToPointMap;
     private double minimumDistance;
 
-    public TSPHeuristicAlgorithmNoGraphGenerator(Map<Integer, TwoDimensionPoint> nodeToPointMap) {
+    public TSPHeuristicAlgorithm(Map<Integer, TwoDimensionPoint> nodeToPointMap) {
         this.nodeToPointMap = nodeToPointMap;
     }
 

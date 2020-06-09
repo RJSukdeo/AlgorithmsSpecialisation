@@ -2,9 +2,9 @@ package Graph;
 
 public final class TSPHeuristicAlgorithmResults {
 
-    private TSPHeuristicAlgorithmNoGraphGenerator algorithm;
+    private TSPHeuristicAlgorithm algorithm;
 
-    TSPHeuristicAlgorithmResults(TSPHeuristicAlgorithmNoGraphGenerator algorithm) {
+    TSPHeuristicAlgorithmResults(TSPHeuristicAlgorithm algorithm) {
         this.algorithm = algorithm;
     }
 
