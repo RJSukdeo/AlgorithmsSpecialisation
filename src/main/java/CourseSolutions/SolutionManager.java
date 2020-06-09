@@ -15,6 +15,7 @@ import CourseSolutions.Course3.Problem4_KnapSackAlgorithms.AssessmentC3P4;
 import CourseSolutions.Course4.Problem1_ShortestPath.AssessmentC4P1;
 import CourseSolutions.Course4.Problem2_TravellingSalesman.AssessmentC4P2;
 import CourseSolutions.Course4.Problem3_TravellingSalesmanHeuristic.AssessmentC4P3;
+import CourseSolutions.Course4.Problem4_TwoSATProblem.AssessmentC4P4;
 
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -134,6 +135,7 @@ public final class SolutionManager {
         solutions.add(new AssessmentC4P1());
         solutions.add(new AssessmentC4P2());
         solutions.add(new AssessmentC4P3());
+        solutions.add(new AssessmentC4P4());
     }
 
     private static class tempComparator implements Comparator<Short> {

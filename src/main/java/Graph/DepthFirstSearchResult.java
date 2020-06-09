@@ -1,6 +1,8 @@
 package Graph;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public final class DepthFirstSearchResult {
@@ -21,6 +23,10 @@ public final class DepthFirstSearchResult {
             leaderToGraphSize.put(leaderNodeId, algorithm.getLeaderToNodesVisited().get(leaderNodeId).size());
         }
         return leaderToGraphSize;
+    }
+
+    public Map<Integer, List<Integer>> getLeaderToNodesVisited() {
+        return algorithm.getLeaderToNodesVisited();
     }
 
 }

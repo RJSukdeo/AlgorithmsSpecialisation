@@ -9,6 +9,7 @@ public final class StrongConnectedComponentAlgorithm {
 
     private final DirectedGraphGenerator graphGenerator;
     private Map<Integer, Integer> sccLeaderToGraphSize;
+    private Map<Integer, List<Integer>> sccLeaderToNodesVisited;
     private Set<Node> nodes;
 
     private StrongConnectedComponentAlgorithm(DirectedGraphGenerator graphGenerator) {
@@ -29,11 +30,18 @@ public final class StrongConnectedComponentAlgorithm {
         graphGenerator.swapDirectionsAllEdges();
         nodes = graphGenerator.getNodes(true);
         dfsAlgo = new DepthFirstSearchAlgorithm(graphGenerator);
-        sccLeaderToGraphSize = dfsAlgo.run(resultantOrderNodeIds).getLeaderToGraphSize();
+        DepthFirstSearchResult dfsResult = dfsAlgo.run(resultantOrderNodeIds);
+        sccLeaderToGraphSize = dfsResult.getLeaderToGraphSize();
+        sccLeaderToNodesVisited = dfsResult.getLeaderToNodesVisited();
         return new StrongConnectedComponentResults(this);
     }
 
     Map<Integer, Integer> getSccLeaderToGraphSize() {
         return sccLeaderToGraphSize;
     }
+
+    public Map<Integer, List<Integer>> getLeaderToNodesVisited() {
+        return sccLeaderToNodesVisited;
+    }
+
 }
