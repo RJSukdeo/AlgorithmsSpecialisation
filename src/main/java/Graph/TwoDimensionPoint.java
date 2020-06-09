@@ -1,6 +1,6 @@
 package Graph;
 
-public class TwoDimensionPoint {
+public final class TwoDimensionPoint {
 
     private final double x;
     private final double y;

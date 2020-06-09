@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class QuickUnionTestCase {
+public final class QuickUnionTestCase {
 
     @Test
     public void testExample() {

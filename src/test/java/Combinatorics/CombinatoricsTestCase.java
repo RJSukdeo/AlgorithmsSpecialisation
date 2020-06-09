@@ -9,7 +9,7 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
-public class CombinatoricsTestCase {
+public final class CombinatoricsTestCase {
 
     @Test
     public void testFactorial() {

@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class TSPAlgorithmTestCase {
+public final class TSPAlgorithmTestCase {
 
     @Test
     public void testExample1() {

@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class TwoSumAlgorithmTestCase {
+public final class TwoSumAlgorithmTestCase {
 
     @Test
     public void testRun() {

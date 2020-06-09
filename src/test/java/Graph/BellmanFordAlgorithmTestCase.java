@@ -7,7 +7,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class BellmanFordAlgorithmTestCase {
+public final class BellmanFordAlgorithmTestCase {
 
     @Test
     public void testExample1() {

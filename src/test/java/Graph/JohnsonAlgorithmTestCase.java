@@ -6,7 +6,7 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-public class JohnsonAlgorithmTestCase {
+public final class JohnsonAlgorithmTestCase {
 
     @Test
     public void testExample1() {

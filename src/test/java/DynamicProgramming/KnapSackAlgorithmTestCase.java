@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KnapSackAlgorithmTestCase {
+public final class KnapSackAlgorithmTestCase {
 
     @Test
     public void testExample() {
